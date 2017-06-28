@@ -1,0 +1,110 @@
+﻿@model IEnumerable<HoangGia.Web.ViewModels.ServiceViewModel>
+@{
+    ViewBag.AdminTitle = "Quản lý Dịch vụ";
+    Layout = "~/Areas/AdminHg/Views/Shared/_Layout.cshtml";
+}
+
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">Danh sách Dịch vụ</h3>
+        <a href="@Url.Action("Create","Services", new {area = "AdminHg"})" class="btn btn-info btn-sm margin-left-8">
+            Thêm dịch vụ
+        </a>
+
+    </div><!-- /.box-header -->
+    <div class="box-body">
+        <table id="myTable" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Tên dịch vụ</th>
+                    <th>Trạng thái</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var service in Model)
+            {
+                    <tr>
+                        <td>@service.Id</td>
+                        <td>
+                            <a href="@Url.Action("Edit", "Services", new {id = service.Id})">
+                                @service.Name
+                            </a>
+                            &nbsp;
+                            @if (service.IsDeleted)
+                            {
+                                <span class="label label-danger">@(service.IsDeleted ? "Đã xóa" : "")</span>
+                            }
+                        </td>
+                        <td>
+                            @{
+                            var label = service.IsActived ? "Đã kích hoạt" : "Chưa kích hoạt";
+                            var classLabel = service.IsActived ? "label-success" : "label-danger";
+                            <span class="label @classLabel">@label</span>
+                        }
+
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Services", new { id = service.Id})">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <a href="javascript:void(0);">
+                            <i data-name="@service.Name" data-id="@service.Id" class="fa fa-trash margin-left-8 btn-delete-menu"></i>
+                        </a>
+                    </td>
+                </tr>
+                            }
+            </tbody>
+        </table>
+    </div>
+    <!-- /.box-body -->
+</div>
+<!-- /.box -->
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            
+            $("input[type='search']").attr('placeholder', 'Nhập tên dịch vụ để tìm...');
+            $('.btn-delete-menu').click(function (e) {
+                e.preventDefault();
+                var link = $(e.target);
+                bootbox.dialog({
+                    message: "Bạn chắc chắn muốn xóa dịch vụ <strong>" + link.attr('data-name') + "</strong>?",
+                    title: "Xác nhận xóa",
+                    buttons: {
+                        no: {
+                            label: "Hủy",
+                            className: "btn-default",
+                            callback: function () {
+                                bootbox.hideAll();
+                            }
+                        },
+                        yes: {
+                            label: "Xóa ",
+                            className: "btn-danger",
+                            callback: function () {
+                                $.ajax({
+                                    url: "/AdminHg/Services/Delete/" + link.attr('data-id'),
+                                    method: "post",
+                                    success: function () {
+                                        link.parents("tr").fadeOut(function () {
+                                            $(this).remove();
+                                        });
+                                    },
+                                    error: function () {
+                                        bootbox.alert("Lỗi xảy ra. Vui lòng liên hệ với bộ phận dev.");
+                                    }
+                                });
+                            }
+                        }
+                    }
+                });
+            });
+
+        });
+    </script>
+}
+

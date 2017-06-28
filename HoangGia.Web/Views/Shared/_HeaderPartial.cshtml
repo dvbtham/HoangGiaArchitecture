@@ -1,0 +1,77 @@
+﻿@using HoangGia.Web.Infrastructure
+@using HoangGia.Web.ViewModels
+@model IEnumerable<MenuViewModel>
+
+@helper GetSubMenus(IEnumerable<MenuViewModel> siteMenu, int? parentId)
+{
+foreach (var menu in Model.Where(a => a.ParentId == parentId))
+{
+    var submenu = Model.Count(a => a.ParentId == menu.Id);
+
+        <li class="@(submenu > 0 ? "has-children" : "")">
+           @Html.MenuLink(menu.Name, menu.ActionName, menu.ControllerName, "active")
+           @if (submenu > 0)
+            {
+                <ul class="submenu">
+                    @GetSubMenus(siteMenu, menu.Id)
+                </ul>
+            }
+        </li>
+}
+}
+@{
+    var menus = Model;
+    var menuParentId = menus.First().ParentId;
+}
+<header id="header" class="header clearfix">
+    <div class="header-wrap clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="nav-wrap">
+                        <div class="btn-menu">
+                            <span></span>
+                        </div>
+                        <!-- /mobile menu button -->
+                        <nav id="mainnav" class="mainnav">
+                            <ul class="menu">
+                                <li class="home">
+                                    <a href="/">Trang chủ</a>
+                                </li>
+                                @if (menus.Any() && menus != null)
+                                {
+                                    @GetSubMenus(menus, menuParentId)
+                                }
+
+                            </ul>
+                            <!-- /.menu -->
+
+                            <div class="menu-extra">
+                                <ul>
+                                    <li id="s" class="search-box">
+                                        <a href="javascript:void(0);" class="flat-search"><i class="icon-magnifier icons"></i></a>
+                                        <div class="submenu top-search">
+                                            <div class="widget widget_search">
+                                                <form class="search-form">
+                                                    <input type="search" class="search-field" placeholder="Tìm bài viết …">
+                                                    <input type="submit" class="search-submit">
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- /.menu-extra -->
+                        </nav>
+                        <!-- /.mainnav -->
+                    </div>
+                    <!-- /.nav-wrap -->
+                </div>
+                <!-- /.col-md-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /.header-wrap -->
+</header>

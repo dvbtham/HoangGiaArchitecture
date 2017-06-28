@@ -1,0 +1,54 @@
+﻿@model IEnumerable<HoangGia.Web.ViewModels.ServiceViewModel>
+@{
+    ViewBag.Title = "Dịch vụ của chúng tôi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Page title -->
+<div class="page-title parallax parallax1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-title-heading">
+                    <h1 class="title">Dịch vụ</h1>
+                    <div class="breadcrumbs">
+                        <ul>
+                            <li>Bạn đang ở đây:</li>
+                            <li><a href="/">Trang chủ</a></li>
+                            <li>@ViewBag.Title</li>
+                        </ul>
+                    </div>
+                </div><!-- /.page-title-captions -->
+
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.page-title -->
+
+<section class="flat-row flat-imagebox pad-bottom20px">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="item w3c">
+                    <div class="imagebox">
+                        <div class="box-image">
+                            <div class="box-header">
+                                <h4 class="box-title"><a href="@Url.Action("Details", "Service", new { id = item.Id })">@item.Name</a></h4>
+                            </div>
+                            <a href="@Url.Action("Details", "Service", new { id = item.Id })"><img src="@item.CoverImage" alt="@item.Name"></a>
+                        </div>
+                        <div class="box-content">
+                            <p>@item.Overview</p>
+                            <div class="flat-button">
+                                <a href="@Url.Action("Details", "Service", new { id = item.Id })"> Chi tiết</a>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.item -->
+            }
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section>
+<div class="content-bottom-widgets">
+    @Html.Partial("_SubscribeFormPartial")
+</div>

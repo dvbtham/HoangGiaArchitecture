@@ -1,0 +1,179 @@
+﻿@using System.Diagnostics
+@model HoangGia.Web.ViewModels.ServiceViewModel
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Page title -->
+<div class="page-title parallax parallax1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-title-heading">
+                    <h1 class="title">Dịch vụ</h1>
+                    <div class="breadcrumbs">
+                        <ul>
+                            <li>Bạn đang ở đây:</li>
+                            <li><a href="/">Trang chủ</a></li>
+                            <li><a href="@Url.Action("Index","Service")">Dịch vụ</a></li>
+                            <li>@ViewBag.Title</li>
+                        </ul>
+                    </div>
+                </div><!-- /.page-title-captions -->
+
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.page-title -->
+
+<section class="flat-row pad-top0px flat-services">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 col-md-push-3">
+                <div class="services-main-text">
+                    <div class="row">
+                        <div class="col-md-6">
+                            @foreach (var img in Model.ImageUrls)
+                            {
+                                <img src="@img" alt="@Model.Name">
+                                <div class="flat-divider d30px"></div>
+                            }
+                        </div><!-- /.col-md-6 -->
+
+                        <div class="col-md-6">
+                            <div class="main-text">
+                                <h3 class="style1">Mô tả</h3>
+                                <p>@Model.Description</p>
+                            </div><!-- /.main-text -->
+
+                            <div class="main-text">
+                                <h3>Tại sao chọn chúng tôi?</h3>
+                                <p>@Model.ChooseUsContent</p>
+
+                                <ul class="iconlist">
+                                    @if (Model.ValueList?.Count > 0)
+                                    {
+                                        foreach (var item in Model.ValueList)
+                                        {
+                                            <li><i class="fa fa-cog"></i> @item</li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                        </div><!-- /.col-md-6 -->
+                    </div><!-- /.row -->
+
+                    <div class="flat-divider d20px"></div>
+
+                    <div class="row">
+                        <div class="flat-scheme">
+                            <h3>We work for the best quality of services for our clients and our clients appreciate us for that.</h3>
+                        </div><!-- /.flat-scheme -->
+                    </div><!-- /.row -->
+
+                </div><!-- /.services-main-text -->
+            </div><!-- /.col-md-9 -->
+
+            <div class="col-md-3 col-md-pull-9">
+                <div class="services-sidebar">
+                    <div class="widget widget_text style1">
+                        <div class="textwidget">
+                            <p><strong>66 Nicholson St Buffalo New York</strong></p>
+                            <p>
+                                <strong>Tel: </strong>0123 456 789<br>
+                                <strong>Mobile: </strong>01-888-666-999<br>
+                                <strong>Mail: </strong><a href="#">info@linethemes.com</a><br>
+                                <strong>Mon - Sat:</strong> 8:00 Am - 18:00 Pm
+                            </p>
+                        </div>
+                    </div><!-- /.widget_text -->
+
+                    <div class="widget widget_recent_projects">
+                        <h3 class="widget-title">Recent Projects</h3>
+                        <div class="widget-slider">
+                            <div class="flexslider">
+                                <ul class="slides">
+                                    <li>
+                                        <div class="recent_projects_content">
+                                            <a href="#"><img src="/Resources/images/services/s1.jpg" alt="image"></a>
+                                            <div class="project-content">
+                                                <h5 class="project-title"><a href="#">The Chair of Charlie</a></h5>
+                                                <ul class="project-categories">
+                                                    <li><a href="#">Furniture</a></li>
+                                                </ul>
+                                                <div class="flat-button style1">
+                                                    <a href="#">Quick View</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="recent_projects_content">
+                                            <a href="#"><img src="/Resources/images/services/s2.jpg" alt="image"></a>
+                                            <div class="project-content">
+                                                <h5 class="project-title"><a href="#">Awesome Blue Home</a></h5>
+                                                <ul class="project-categories">
+                                                    <li><a href="#">Decoration &nbsp; Houses</a></li>
+                                                </ul>
+                                                <div class="flat-button style1">
+                                                    <a href="#">Quick View</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="recent_projects_content">
+                                            <a href="#"><img src="/Resources/images/services/s3.jpg" alt="image"></a>
+                                            <div class="project-content">
+                                                <h5 class="project-title"><a href="#">Museum Contemporary</a></h5>
+                                                <ul class="project-categories">
+                                                    <li><a href="#">Furniture &nbsp; Houses</a></li>
+                                                </ul>
+                                                <div class="flat-button style1">
+                                                    <a href="#">Quick View</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="recent_projects_content">
+                                            <a href="#"><img src="/Resources/images/services/s4.jpg" alt="image"></a>
+                                            <div class="project-content">
+                                                <h5 class="project-title"><a href="#">Awesome Green House</a></h5>
+                                                <ul class="project-categories">
+                                                    <li><a href="#">Houses</a></li>
+                                                </ul>
+                                                <div class="flat-button style1">
+                                                    <a href="#">Quick View</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="recent_projects_content">
+                                            <a href="#"><img src="/Resources/images/services/s5.jpg" alt="image"></a>
+                                            <div class="project-content">
+                                                <h5 class="project-title"><a href="#">The Chair of Charlie</a></h5>
+                                                <ul class="project-categories">
+                                                    <li><a href="#">Furniture</a></li>
+                                                </ul>
+                                                <div class="flat-button style1">
+                                                    <a href="#">Quick View</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div><!-- /.widget_recent_projects -->
+                </div><!-- /.services-sidebar -->
+            </div><!-- /.col-md-3 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section>
+
+<div class="content-bottom-widgets">
+    @Html.Partial("_SubscribeFormPartial")
+</div>
+<!-- /.content-bottom-widgets -->

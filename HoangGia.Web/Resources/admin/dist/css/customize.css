@@ -1,0 +1,121 @@
+﻿.margin-left-8 {
+    margin-left: 8px;
+}
+
+.img-box {
+    width: 100%;
+    height: 100%;
+}
+
+.img-inline {
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 150px;
+    display: inline;
+    cursor: pointer;
+}
+
+    .img-inline:first-child {
+        margin-left: 0px;
+    }
+
+#btnImage {
+    cursor: pointer;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.input-group .checkbox-addon {
+    border: 1px solid #d2d6de;
+    margin-right: 8px;
+    padding: 6px 9px;
+    border-radius: 0;
+    border-color: #d2d6de;
+}
+
+    .input-group .checkbox-addon > input[type="checkbox"] {
+        margin: 0 auto;
+        margin-left: 4px;
+        margin-right: -2px;
+        line-height: normal;
+    }
+
+.panel-success {
+    border-color: #3C8DBC;
+}
+
+.panel-heading .accordion-toggle:after {
+    /* symbol for "opening" panels */
+    font-family: 'Glyphicons Halflings';
+    content: "\e114";
+    float: right;
+    color: white;
+}
+
+.panel-heading .accordion-toggle.collapsed:after {
+    content: "\e080";
+}
+
+.panel-success > .panel-heading {
+    color: white;
+    background-color: #3C8DBC;
+    border-color: #3C8DBC;
+    border-radius: 0;
+}
+
+.panel-group .panel {
+    margin-bottom: 0;
+    border-radius: 0;
+}
+
+    .panel-group .panel a:hover, .panel-group .panel a:active, .panel-group .panel a:focus {
+        outline: none;
+        text-decoration: none;
+        color: white;
+    }
+
+.project-images {
+    display: inline;
+}
+.project-images > .project-image > img.img-responsive {
+    width: 100%;
+    height: 100%;
+}
+
+.project-image {
+    float: left;
+    width: 242px;
+    height: 188px;
+    display: inline;
+    position: relative;
+    margin-left: 17px;
+    margin-bottom: 7px;
+}
+    .actions-box {
+        position: absolute;
+        display: none;
+        top: 0;
+        z-index: 999;
+        width: 100%;
+        height: 100%;
+        transition: 1.5s ease-in-out all;
+        background-color: rgba(0,0,0,0.5);
+    }
+
+    .actions-box .actions {
+        align-items: center;
+        position: relative;
+        display: inline-block;
+        top: 44%;
+        left: 39%;
+    }
+
+.actions > a {
+    padding-right: 8px;
+}
+.panel-success > .panel-heading + .panel-collapse > .panel-body {
+    border-top-color: transparent;
+}
+#lblAdd{ cursor: pointer;}

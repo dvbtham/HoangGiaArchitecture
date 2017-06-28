@@ -1,0 +1,42 @@
+﻿@model IEnumerable<HoangGia.Web.ViewModels.ProjectViewModel>
+<section class="flat-row">
+    <div class="container">
+        <div class="row">
+            <div class="flat-projects-portfolio style2">
+                <ul class="portfolio-filter">
+                    <li class="active"><a data-filter="*" href="#">Tất cả</a></li>
+                    <li><a data-filter=".p_1" href="#">Nội thất</a></li>
+                    <li><a data-filter=".p_2" href="#">Ngoại thất</a></li>
+                </ul>
+                <!-- /.project-filter -->
+                <div class="projects-portfolio">
+                    @foreach (var project in Model)
+                    {
+                        <div class="projects-portfolio-wrap style1">
+                            <div class="item p_@project.ProjectCategoryId">
+                                <div class="portfolio-img">
+                                    <a href="#"><img src="@project.Image" alt="@project.Name"></a>
+                                    <div class="flat-button style1">
+                                        <a href="#">Xem</a>
+                                    </div>
+                                    <div class="overlay"></div>
+                                    <div class="portfolio-content">
+                                        <h5 class="portfolio-title"><a href="#">@project.Name</a></h5>
+                                        <ul class="portfolio-categories">
+                                            <li><a href="#">@project.ProjectCategory.Name</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.item -->
+                        </div>
+                    }
+                </div>
+                <!-- /.projects-portfolio -->
+            </div>
+            <!-- /.flat-projects-portfolio -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</section>

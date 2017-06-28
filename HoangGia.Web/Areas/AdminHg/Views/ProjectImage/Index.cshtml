@@ -1,0 +1,100 @@
+﻿@model IEnumerable<HoangGia.Web.ViewModels.ProjectViewModel>
+@{
+    ViewBag.AdminTitle = "Quản lý Hình ảnh dự án";
+    Layout = "~/Areas/AdminHg/Views/Shared/_Layout.cshtml";
+}
+@section css
+{
+    <link href="~/Resources/stylesheets/justifiedGallery.css" rel="stylesheet" />
+    <link href="~/Resources/stylesheets/magnific-popup.css" rel="stylesheet" />
+}
+
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">@ViewBag.AdminTitle</h3>
+    </div><!-- /.box-header -->
+    <div class="box-body">
+        <div class="col-md-12">
+            <div class="panel-group" id="accordion">
+                @foreach (var item in Model)
+                {
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse-@item.Id">
+                                    @item.Name
+                                </a>
+                                <label class="badge">@item.ProjectImages.Count() ảnh</label>
+                                <label id="lblAdd" data-id="@item.Id" data-toggle="modal" data-project-name="@item.Name" data-target="#myModal" class="label label-warning margin-left-8 lblAdd">Thêm ảnh</label>
+                            </h4>
+                        </div>
+                        <div id="collapse-@item.Id" class="panel-collapse collapse in">
+                            <div class="panel-body project-images">
+                                @if (item.ProjectImages.Any())
+                                {
+                                    foreach (var image in item.ProjectImages)
+                                    {
+                                        <div class="project-image">
+                                            <img alt="@item.Name" class="img-responsive" src="@image.ImageUrl" />
+                                            <div class="actions-box">
+                                                <div class="actions">
+                                                    <a class="popup-gallery" href="@image.ImageUrl">
+                                                        <i class="fa fa-eye fa-2x" data-toggle="tooltip" title="Xem ảnh"></i>
+                                                    </a>
+                                                    <a href="#">
+                                                        <i class="fa fa-trash fa-2x text-danger delete-project-image" data-id="@image.Id" data-toggle="tooltip" title="Xóa ảnh"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    <p class="text-danger text-center">Không có hình ảnh cho dự án này!</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Thêm hình ảnh cho dự án <strong id="projectName"></strong></h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <input id="Id" hidden />
+                    <input id="ProjectId" hidden />
+                    <input id="ImageUrl" hidden />
+                    <button type="button" class="btn btn-primary" id="btnImage"><i class="fa fa-picture-o"></i>&nbsp;Chọn ảnh</button>
+                    <div class="img-box"></div>
+                </div>
+                <br />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnAdd">Thêm</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript" src="/Resources/javascript/jquery.magnific-popup.min.js"></script>
+    <script src="~/Resources/admin/controllers/projectImageController.js"></script>
+}

@@ -1,0 +1,155 @@
+﻿@model HoangGia.Web.ViewModels.ServiceViewModel
+
+@{
+    ViewBag.AdminTitle = Model.Heading;
+    Layout = "~/Areas/AdminHg/Views/Shared/_Layout.cshtml";
+}
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">@Model.Heading</h3>
+    </div><!-- /.box-header -->
+    <div class="box-body">
+        @using (Html.BeginForm(Model.Action, "Services"))
+        {
+            <div class="col-md-6">
+                <p class="alert alert-info">Thông tin <strong> bắt buộc (*)</strong>.</p>
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                @Html.HiddenFor(x => x.Id)
+                <div class="input-group">
+                    <span class="input-group-addon" data-toggle='tooltip' title="Tên dịch vụ">
+                        <i class="fa fa-user"></i>
+                    </span>
+                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "Tên dịch vụ (*)" })
+                </div>
+                <br />
+
+                <div class="input-group">
+                    <span class="input-group-addon" data-toggle='tooltip' title="Mô tả dịch vụ của bạn">
+                        <i class="fa fa-ticket"></i>
+                    </span>
+                    @Html.TextAreaFor(x => x.Overview, new { @class = "form-control", placeholder = "Mô tả tổng quan về dịch vụ (*)" })
+                </div>
+                <br />
+                <div class="input-group">
+                    <span class="input-group-addon" data-toggle='tooltip' title="Mô tả chi tiết hơn về dịch vụ">
+                        <i class="fa fa-keyboard-o"></i>
+                    </span>
+                    @Html.TextAreaFor(x => x.Description, new { @class = "form-control", placeholder = "Mô tả chi tiết hơn về dịch vụ (*)" })
+                </div>
+                <br />
+                <div class="input-group">
+                    <span class="input-group-addon" id="btnImage" data-toggle='tooltip' title="Hình ảnh, có thể nhiều lần chọn.">
+                        <i class="fa fa-picture-o"></i>
+                    </span>
+                    @Html.TextBoxFor(x => x.Images, new { @class = "form-control", @readonly = "readonly", placeholder = "Ảnh (*)", id = "txtImage" })
+                </div>
+                <br />
+                <div class="input-group">
+                    <span class="input-group-addon" data-toggle='tooltip' title="Tại sao chọn chúng tôi?">
+                        <i class="fa fa-bookmark-o"></i>
+                    </span>
+                    @Html.TextAreaFor(x => x.ChooseUsContent, new { @class = "form-control", placeholder = "Tại sao chọn chúng tôi? (*)" })
+                </div>
+                <br />
+                <div class="input-group">
+                    <span class="input-group-addon" data-toggle='tooltip' title="Thêm nhiều giá trị bằng cách thêm dấu / cuối câu">
+                        <i class="fa fa-bookmark"></i>
+                    </span>
+                    @Html.TextAreaFor(x => x.ChooseUsValues, new { @class = "form-control", placeholder = "Giá trị mang lại (*). Thêm nhiều giá trị bằng cách thêm dấu '/' cuối câu" })
+                </div>
+                <br />
+                <div class="input-group" data-toggle='tooltip' title="Hiển thị trang chủ?">
+                    <span class="checkbox-addon">
+                        @Html.CheckBoxFor(x => x.ShowOnHome, new { id = "showOnHome" })
+                    </span>
+                    <label for="showOnHome" class="pointer">Hiển thị trang chủ?</label>
+                </div>
+                <br />
+                <div class="input-group" data-toggle='tooltip' title="Kích hoạt?">
+                    <span class="checkbox-addon">
+                        @Html.CheckBoxFor(x => x.IsActived, new { id = "active" })
+                    </span>
+                    <label for="active" class="pointer">Kích hoạt?</label>
+                </div>
+                <br />
+                @if (Model.Action == "Update")
+                {
+                    <div class="input-group" data-toggle='tooltip' title="Xóa dịch vụ này?">
+                        <span class="checkbox-addon">
+                            @Html.CheckBoxFor(x => x.IsDeleted, new { id = "deleteService" })
+                        </span>
+                        <label for="deleteService" class="pointer">Xóa dịch vụ này?</label>
+                    </div>
+                    <br />
+                }
+                <button type="submit" class="btn btn-primary">Lưu</button>
+                <button type="button" onclick="window.location.href='/adminhg/services'" class="btn btn-danger">Hủy</button>
+            </div>
+            <div class="col-md-6">
+                <div class="img-box">
+                    @if (Model?.ImageUrls != null)
+                    {
+                        foreach (var url in Model.ImageUrls)
+                        {
+                            <img src="@url" class="img-responsive img-inline" data-toggle='tooltip' title='Click 2 lần để xóa!' />
+                        }
+                    }
+                </div>
+            </div>
+        }
+
+    </div>
+    <!-- /.box-body -->
+</div>
+<!-- /.box -->
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            var images = getImages();
+            function getImages() {
+                var temp = [];
+                $.each($(".img-inline"),
+                    function () {
+                        temp.push($(this).attr('src'));
+                    });
+                return temp;
+            };
+
+            $('#btnImage').on('click',
+                function () {
+                    var finder = new CKFinder();
+                    finder.selectActionFunction = function (url) {
+                        var html = "";
+                        $('.img-box').html(html);
+                        images.push(url);
+                        $('#txtImage').val(images);
+                        $.each(images,
+                            function (i, e) {
+                                html += "<img src='" +
+                                    e +
+                                    "' class='img-responsive img-inline' data-toggle='tooltip' title='Click 2 lần để xóa!' />";
+                                $('.img-box').html(html);
+                            });
+                    }
+
+                    finder.popup();
+                });
+
+            $(document).on('dblclick',
+                '.img-inline',
+                function (e) {
+                    e.preventDefault();
+                    var img = $(e.target);
+                    var url = img.attr('src');
+                    var index = images.indexOf(url);
+                    images.splice(index, 1);
+                    $('#txtImage').val(images);
+                    $('.tooltip').remove();
+                    $(e.target).fadeOut(function () {
+                        $(this).remove();
+                    });
+                });
+        });
+    </script>
+}

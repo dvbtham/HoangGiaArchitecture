@@ -1,0 +1,107 @@
+﻿@using HoangGia.Web.Infrastructure
+@model IEnumerable<HoangGia.Web.ViewModels.ProjectViewModel>
+@{
+    ViewBag.AdminTitle = "Danh sách Dự án";
+    Layout = "~/Areas/AdminHg/Views/Shared/_Layout.cshtml";
+}
+
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">@ViewBag.AdminTitle</h3>
+        <!-- Trigger the modal with a button -->
+        <a href="@Url.Action("Create","Project", new {area = "AdminHg"})" class="btn btn-info btn-sm margin-left-8">
+            Thêm dự án
+        </a>
+
+    </div><!-- /.box-header -->
+    <div class="box-body">
+        <table id="myTable" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Tên dự án</th>
+                    <th>Danh mục</th>
+                    <th>Khách hàng</th>
+                    <th>Địa chỉ</th>
+                    <th>Trạng thái</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var project in Model)
+            {
+                    <tr>
+                        <td>@project.Id</td>
+                        <td>
+                            <a href="@Url.Action("Edit", "Project", new { id = project.Id})">
+                                @project.Name
+                            </a>
+                        </td>
+                        <td>@project.ProjectCategory.Name</td>
+                        <td>@project.Client</td>
+                        <td>@project.Location</td>
+                        <td>
+                           @Html.ProjectStatusHelper(project.Status)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Edit", "Project", new { id = project.Id})">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                            <a href="javascript:void(0);">
+                                <i data-name="@project.Name" data-id="@project.Id" class="fa fa-trash margin-left-8 btn-delete-menu"></i>
+                            </a>
+                        </td>
+                    </tr>
+                                }
+            </tbody>
+        </table>
+    </div>
+    <!-- /.box-body -->
+</div>
+<!-- /.box -->
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            
+            $("input[type='search']").attr('placeholder', 'Nhập tên dự án để tìm...');
+            $('.btn-delete-menu').click(function (e) {
+                e.preventDefault();
+                var link = $(e.target);
+                bootbox.dialog({
+                    message: "Bạn chắc chắn muốn xóa dự án <strong>" + link.attr('data-name') + "</strong>?",
+                    title: "Xác nhận xóa",
+                    buttons: {
+                        no: {
+                            label: "Hủy",
+                            className: "btn-default",
+                            callback: function () {
+                                bootbox.hideAll();
+                            }
+                        },
+                        yes: {
+                            label: "Xóa ",
+                            className: "btn-danger",
+                            callback: function () {
+                                $.ajax({
+                                    url: "/AdminHg/Project/Delete/" + link.attr('data-id'),
+                                    method: "post",
+                                    success: function () {
+                                        link.parents("tr").fadeOut(function () {
+                                            $(this).remove();
+                                        });
+                                    },
+                                    error: function () {
+                                        bootbox.alert("Lỗi xảy ra. Vui lòng liên hệ với bộ phận dev.");
+                                    }
+                                });
+                            }
+                        }
+                    }
+                });
+            });
+
+        });
+    </script>
+}
