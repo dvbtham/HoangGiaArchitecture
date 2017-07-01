@@ -89,80 +89,27 @@
                     </div><!-- /.widget_text -->
 
                     <div class="widget widget_recent_projects">
-                        <h3 class="widget-title">Recent Projects</h3>
+                        <h3 class="widget-title">Dự án gần đây</h3>
                         <div class="widget-slider">
                             <div class="flexslider">
                                 <ul class="slides">
-                                    <li>
-                                        <div class="recent_projects_content">
-                                            <a href="#"><img src="/Resources/images/services/s1.jpg" alt="image"></a>
-                                            <div class="project-content">
-                                                <h5 class="project-title"><a href="#">The Chair of Charlie</a></h5>
-                                                <ul class="project-categories">
-                                                    <li><a href="#">Furniture</a></li>
-                                                </ul>
-                                                <div class="flat-button style1">
-                                                    <a href="#">Quick View</a>
+                                    @foreach (var project in Model.RecenProjects)
+                                    {
+                                        <li>
+                                            <div class="recent_projects_content">
+                                                <a href="@Url.Action("Details","Project", new { id = project.Id })"><img src="@project.Image" alt="@project.Name"></a>
+                                                <div class="project-content">
+                                                    <h5 class="project-title"><a href="@Url.Action("Details","Project", new { id = project.Id })">@project.Name</a></h5>
+                                                    <ul class="project-categories">
+                                                        <li><a href="@Url.Action("Details","Project", new { id = project.Id })">@project.ProjectCategory.Name</a></li>
+                                                    </ul>
+                                                    <div class="flat-button style1">
+                                                        <a href="@Url.Action("Details","Project", new { id = project.Id })">Chi tiết</a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="recent_projects_content">
-                                            <a href="#"><img src="/Resources/images/services/s2.jpg" alt="image"></a>
-                                            <div class="project-content">
-                                                <h5 class="project-title"><a href="#">Awesome Blue Home</a></h5>
-                                                <ul class="project-categories">
-                                                    <li><a href="#">Decoration &nbsp; Houses</a></li>
-                                                </ul>
-                                                <div class="flat-button style1">
-                                                    <a href="#">Quick View</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="recent_projects_content">
-                                            <a href="#"><img src="/Resources/images/services/s3.jpg" alt="image"></a>
-                                            <div class="project-content">
-                                                <h5 class="project-title"><a href="#">Museum Contemporary</a></h5>
-                                                <ul class="project-categories">
-                                                    <li><a href="#">Furniture &nbsp; Houses</a></li>
-                                                </ul>
-                                                <div class="flat-button style1">
-                                                    <a href="#">Quick View</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="recent_projects_content">
-                                            <a href="#"><img src="/Resources/images/services/s4.jpg" alt="image"></a>
-                                            <div class="project-content">
-                                                <h5 class="project-title"><a href="#">Awesome Green House</a></h5>
-                                                <ul class="project-categories">
-                                                    <li><a href="#">Houses</a></li>
-                                                </ul>
-                                                <div class="flat-button style1">
-                                                    <a href="#">Quick View</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="recent_projects_content">
-                                            <a href="#"><img src="/Resources/images/services/s5.jpg" alt="image"></a>
-                                            <div class="project-content">
-                                                <h5 class="project-title"><a href="#">The Chair of Charlie</a></h5>
-                                                <ul class="project-categories">
-                                                    <li><a href="#">Furniture</a></li>
-                                                </ul>
-                                                <div class="flat-button style1">
-                                                    <a href="#">Quick View</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
+                                        </li>
+                                    }
                                 </ul>
                             </div>
                         </div>
@@ -173,7 +120,4 @@
     </div><!-- /.container -->
 </section>
 
-<div class="content-bottom-widgets">
-    @Html.Partial("_SubscribeFormPartial")
-</div>
-<!-- /.content-bottom-widgets -->
+@Html.Partial("_SubscribeFormPartial")

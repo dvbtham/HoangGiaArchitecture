@@ -1,0 +1,95 @@
+﻿@using HoangGia.Web.Infrastructure
+@model HoangGia.Web.ViewModels.ProjectViewModel
+@{
+    ViewBag.Title = Model.Heading;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Page title -->
+<div class="page-title parallax parallax1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-title-heading">
+                    <h1 class="title">@Model.Name</h1>
+                    <div class="breadcrumbs">
+                        <ul>
+                            <li>Bạn đang ở đây:</li>
+                            <li><a href="/">Trang chủ</a></li>
+                            <li><a href="/">Dự án</a></li>
+                            <li>@Model.Name</li>
+                        </ul>
+                    </div>
+                </div><!-- /.page-title-captions -->
+
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.page-title -->
+
+<section class="flat-row flat-projects-single pad-top0px">
+    <div class="container">
+        <div class="row">
+            <div class="projects-single">
+                <div class="projects-sidebar">
+                    <div class="projects-sidebar-wrap">
+                        <h3 class="projects-title">Thông tin dự án</h3>
+                        <ul class="iconlist">
+                            <li><i class="fa fa-cog"></i> <strong> Khách hàng:</strong> @Model.Client</li>
+                            <li><i class="fa fa-cog"></i> <strong> Trạng thái:</strong> @Html.ProjectStatusHelper(Model.Status)</li>
+                            <li><i class="fa fa-cog"></i> <strong> Quốc gia:</strong> @Model.Location</li>
+                        </ul>
+                        <p>@Model.ProjectDescription</p>
+
+                    </div>
+                </div><!-- /.projects-sidebar -->
+                <div class="project-gallery project-gallery-slider">
+                    <div class="flexslider">
+                        <ul class="slides">
+                            @foreach (var img in Model.ProjectImages)
+                            {
+                                <li>
+                                    <a class="popup-gallery" href="@img.ImageUrl">
+                                        <img class="img-responsive" src="@img.ImageUrl" alt="@Model.Name">
+                                    </a>
+                                </li>
+                            }
+
+                        </ul>
+                    </div><!-- /.flexslider -->
+                </div><!-- /.project-gallery-slider -->
+            </div><!-- /.projects-single -->
+
+            <div class="flat-projects-portfolio">
+                <h3 class="projects-related-title">Dự án liên quan <small>@(Model.RelatedProjects.Any() ? "" : " - Không có dự án nào liên quan")</small></h3>
+                <div class="projects-portfolio">
+                    @foreach (var project in Model.RelatedProjects)
+                    {
+                        <div class="projects-portfolio-wrap style1">
+                            <div class="item">
+                                <div class="portfolio-img">
+                                    <a href="@Url.Action("Details", "Project", new {id = project.Id})">
+                                        <img src="@project.Image" alt="@project.Name">
+                                    </a>
+                                    <div class="flat-button style1">
+                                        <a href="@Url.Action("Details","Project", new { id = project.Id })">Xem chi tiết </a>
+                                    </div>
+                                    <div class="overlay"></div>
+                                    <div class="portfolio-content">
+                                        <h5 class="portfolio-title"><a href="@Url.Action("Details","Project", new { id = project.Id })">@project.Name</a></h5>
+                                        <ul class="portfolio-categories">
+                                            <li><a href="@Url.Action("Details","Project", new { id = project.Id })">@project.ProjectCategory.Name</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div><!-- /.item -->
+                        </div><!-- /.projects-portfolio-wrap -->
+
+                    }
+                </div><!-- /.projects-portfolio -->
+            </div><!-- /.flat-projects-portfolio -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section>
+
+@Html.Partial("_SubscribeFormPartial") 

@@ -70,6 +70,7 @@ namespace HoangGia.Web.Areas.AdminHg.Controllers
                 _menuService.SaveChanges();
                 return RedirectToAction("Index", "Menu");
             }
+            PrepareMenusModel(viewModel);
             viewModel.Heading = "Cập nhật menu";
             return View("MenuForm", viewModel);
         }

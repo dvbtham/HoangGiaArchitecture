@@ -14,12 +14,14 @@ namespace HoangGia.Web.Controllers
         private readonly IMenuService _menuService;
         private readonly IServService _serveService;
         private readonly IProjectService _projectService;
+        private readonly IProjectCategoryService _projectCategoryService;
 
-        public HomeController(IMenuService menuService, IServService serveService, IProjectService projectService)
+        public HomeController(IMenuService menuService, IServService serveService, IProjectService projectService, IProjectCategoryService projectCategoryService)
         {
             _menuService = menuService;
             _serveService = serveService;
             _projectService = projectService;
+            _projectCategoryService = projectCategoryService;
         }
 
         public ActionResult Index()
@@ -59,8 +61,13 @@ namespace HoangGia.Web.Controllers
         public PartialViewResult Projects()
         {
             var projects = _projectService.ActivingProjects(new[] { "ProjectCategory", "ProjectImages" });
+            var categories = _projectCategoryService.GetWorkingProjectCategories();
             var projectsMapper =
                 Mapper.Map<IEnumerable<Project>, IEnumerable<ProjectViewModel>>(projects);
+
+            var categoriesMapper =
+                Mapper.Map<IEnumerable<ProjectCategory>, IEnumerable<ProjectCategoryViewModel>>(categories);
+            ViewBag.ProjectCategories = categoriesMapper;
             return PartialView("_ProjectsHomePartial", projectsMapper);
         }
     }

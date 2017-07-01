@@ -46,6 +46,7 @@
     <Compile Include="Services\ErrorService.cs" />
     <Compile Include="Services\MenuService.cs" />
     <Compile Include="Services\PostCategoryService.cs" />
+    <Compile Include="Services\PostService.cs" />
     <Compile Include="Services\ProjectCategoryService.cs" />
     <Compile Include="Services\ProjectImageService.cs" />
     <Compile Include="Services\ProjectService.cs" />

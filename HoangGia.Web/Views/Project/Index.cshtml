@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Danh sách dự án";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Page title -->
+<div class="page-title parallax parallax1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-title-heading">
+                    <h1 class="title">@ViewBag.Title</h1>
+                    <div class="breadcrumbs">
+                        <ul>
+                            <li>Bạn đang ở đây:</li>
+                            <li><a href="/">Trang chủ</a></li>
+                            <li>@ViewBag.Title</li>
+                        </ul>
+                    </div>
+                </div><!-- /.page-title-captions -->
+
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.page-title -->
+
+@{ Html.RenderAction("Projects", "Home"); }
+
+@Html.Partial("_SubscribeFormPartial")
+

@@ -9,8 +9,10 @@ namespace HoangGia.Service.Services
 {
     public interface IProjectService : ICrudService<Project>, IGetDataService<Project>
     {
+        Project FindById(int id, string[] inclueds = null);
         IEnumerable<Project> GetInclude(string keyword = null, string[] includes = null);
         IEnumerable<Project> ActivingProjects(string[] includes = null);
+        IEnumerable<Project> GetRelatedProjects(int id, int categoryId, string[] includes = null);
     }
     public class ProjectService : IProjectService
     {
@@ -47,6 +49,10 @@ namespace HoangGia.Service.Services
         {
             return _projectRepository.GetSingleById(id);
         }
+        public Project FindById(int id, string[] includes)
+        {
+            return _projectRepository.GetSingleByCondition(x => x.Id == id, includes);
+        }
 
         public IEnumerable<Project> GetAll(string keyword = null)
         {
@@ -67,6 +73,12 @@ namespace HoangGia.Service.Services
         {
             var query = _projectRepository.GetAll(includes);
             return query;
+        }
+        
+        public IEnumerable<Project> GetRelatedProjects(int id, int categoryId, string[] includes = null)
+        {
+            var relatedProjects = _projectRepository.GetMulti(x => x.ProjectCategoryId == categoryId && !x.IsDeleted && x.Id != id, includes);
+            return relatedProjects;
         }
     }
 }

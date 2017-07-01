@@ -17,7 +17,7 @@ namespace HoangGia.Service.Services
         private readonly IProjectCategoryRepository _projectCategoryRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public ProjectCategoryService( IUnitOfWork unitOfWork, IProjectCategoryRepository projectCategoryRepository)
+        public ProjectCategoryService(IUnitOfWork unitOfWork, IProjectCategoryRepository projectCategoryRepository)
         {
             _unitOfWork = unitOfWork;
             _projectCategoryRepository = projectCategoryRepository;
@@ -46,7 +46,7 @@ namespace HoangGia.Service.Services
 
         public IEnumerable<ProjectCategory> GetWorkingProjectCategories()
         {
-            var query = _projectCategoryRepository.GetMulti(x=>!x.IsDeleted);
+            var query = _projectCategoryRepository.GetMulti(x => !x.IsDeleted);
             return query;
         }
 

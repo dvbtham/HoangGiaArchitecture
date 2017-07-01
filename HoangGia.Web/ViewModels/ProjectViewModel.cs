@@ -44,6 +44,8 @@ namespace HoangGia.Web.ViewModels
 
         public IEnumerable<ProjectImageViewModel> ProjectImages { get; set; }
 
+        public IEnumerable<ProjectViewModel> RelatedProjects { get; set; }
+
         public string Action
         {
             get
@@ -61,8 +63,7 @@ namespace HoangGia.Web.ViewModels
         public string Image => ProjectImages.FirstOrDefault()?.ImageUrl;
 
         public SelectList ProjectStatusList { get; set; }
-
-
+        
     }
 
     

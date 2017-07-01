@@ -62,5 +62,7 @@ namespace HoangGia.Web.ViewModels
         public string CoverImage => ImageUrls?[0];
         public List<string> ValueList => ChooseUsValues?.Split('/').ToList();
         public List<string> ImageUrls => Images?.Split(',').ToList();
+
+        public IEnumerable<ProjectViewModel> RecenProjects { get; set; }
     }
 }

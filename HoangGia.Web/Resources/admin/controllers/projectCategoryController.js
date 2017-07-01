@@ -1,7 +1,7 @@
 ﻿
 $(document).ready(function () {
     loadData();
-    $('a.margin-left-8').on('click',
+    $('#modalAdd').on('click',
         function() {
             clearTextBox();
         });
@@ -40,9 +40,8 @@ function loadData() {
 
 //Add Data Function   
 function Add() {
-    clearTextBox();
-    var res = validate();
-    if (res === false) {
+
+    if (validate() === false) {
         return false;
     }
     
