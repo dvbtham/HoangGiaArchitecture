@@ -14,7 +14,8 @@
                         <ul>
                             <li>Bạn đang ở đây:</li>
                             <li><a href="/">Trang chủ</a></li>
-                            <li>Tất cả cẩm nang</li>
+                            <li><a href="@Url.Action("Index", "Posts")">Cẩm nang</a></li>
+                            <li>@Model.Name</li>
                         </ul>
                     </div>
                 </div><!-- /.page-title-captions -->
@@ -29,7 +30,7 @@
                 <div class="content-wrap">
                     <div class="main-content-wrap">
                             <article class="post">
-                                <div class="feature-post blog-slider">
+                                <div class="feature-post">
                                     <img src="@Model.Image" alt="@Model.Name">
                                 </div><!-- /.feature-post -->
                                 <div class="header-post">
@@ -42,7 +43,7 @@
 
                                     <div class="meta-post">
                                         <span>Đăng bởi</span>
-                                        <span><a href="javascript:void();">@(Model.CreatedBy == "" ? "admin" : Model.CreatedBy)</a></span>
+                                        <span><a href="javascript:void();">@Model.CreatedBy</a></span>
                                         <span>trong mục</span>
                                         <span><strong>@Model.PostCategory.Name </strong></span>
                                         <span class="comments-link"><i class="fa fa-eye"></i>&nbsp;@Model.ViewCount</span>

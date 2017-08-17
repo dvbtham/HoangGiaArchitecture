@@ -1,5 +1,4 @@
-﻿@using HoangGia.Model.Entities
-@using HoangGia.Web.ViewModels
+﻿@using HoangGia.Web.ViewModels
 @model HoangGia.Web.Infrastructure.Core.PaginationSet<PostViewModel>
 @{
     ViewBag.Title = "Cẩm nang";
@@ -51,10 +50,10 @@
 
                                     <div class="meta-post">
                                         <span>Đăng bởi</span>
-                                        <span><a href="#">@(item.CreatedBy == "" ? "admin" : item.CreatedBy)</a></span>
+                                        <span><a href="javasctipt:void();">@item.CreatedBy</a></span>
                                         <span>trong mục</span>
-                                        <span><a href="#">@item.PostCategory.Name </a></span>
-                                        <span class="comments-link"><a href="#">@item.ViewCount</a></span>
+                                        <span><strong>@item.PostCategory.Name </strong></span>
+                                    <span class="comments-link"><i class="fa fa-eye"></i>&nbsp;@item.ViewCount</span>
                                     </div>
 
                                 </div><!-- /.content-post -->

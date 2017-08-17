@@ -59,6 +59,7 @@ namespace HoangGia.Web.Areas.AdminHg.Controllers
             {
                 var post = new Post();
                 post.PostMapper(viewModel);
+                post.CreatedBy = User.Identity.Name;
                 _postService.Add(post);
                 _postService.SaveChanges();
                 return RedirectToAction("Index", "Post");
@@ -84,6 +85,7 @@ namespace HoangGia.Web.Areas.AdminHg.Controllers
             {
                 var post = _postService.FindById(viewModel.Id);
                 viewModel.UpdatedDate = DateTime.Now;
+                viewModel.UpdatedBy = User.Identity.Name;
                 post.PostMapper(viewModel);
                 _postService.Update(post);
                 _postService.SaveChanges();
