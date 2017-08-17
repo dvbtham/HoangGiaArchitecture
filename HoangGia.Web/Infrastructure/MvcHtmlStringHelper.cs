@@ -39,6 +39,7 @@ namespace HoangGia.Web.Infrastructure
             return MenuLink(htmlHelper, linkText, actionName, controllerName, activeClass, true);
 
         }
+
         public static MvcHtmlString HgDropdownListFor<TModel, TValue>(this HtmlHelper<TModel> helper,
             Expression<Func<TModel, TValue>> expression, IEnumerable<SelectListItem> itemList,
             object htmlAttributes = null, bool renderFormControlClass = true)
@@ -65,10 +66,17 @@ namespace HoangGia.Web.Infrastructure
             return htmlAttributes as RouteValueDictionary;
         }
 
-        public static MvcHtmlString ProjectStatusHelper(this HtmlHelper helper, ProjectStatus status)
+        public static MvcHtmlString ProjectStatusHelper(this HtmlHelper helper, ProjectStatus status, bool isDeleted = false)
         {
             var classes = "label ";
             var spanBuilder = new TagBuilder("span");
+            if (isDeleted)
+            {
+                classes += "label-danger ";
+                spanBuilder.MergeAttribute("class", classes);
+                spanBuilder.InnerHtml = "Không hoạt động";
+                return new MvcHtmlString(spanBuilder.ToString(TagRenderMode.Normal));
+            }
             if (status == ProjectStatus.Working)
             {
                 classes += "label-info ";
@@ -94,6 +102,77 @@ namespace HoangGia.Web.Infrastructure
             spanBuilder.MergeAttribute("class", classes);
             spanBuilder.InnerHtml = "Chưa khởi tạo";
             return new MvcHtmlString(spanBuilder.ToString(TagRenderMode.Normal));
+        }
+        public static MvcHtmlString LabelActived(this HtmlHelper helper, bool status)
+        {
+            var classes = "label ";
+            var spanBuilder = new TagBuilder("span");
+            if (status)
+            {
+                classes += "label-success ";
+                spanBuilder.MergeAttribute("class", classes);
+                spanBuilder.InnerHtml = "Hoạt động";
+                return new MvcHtmlString(spanBuilder.ToString(TagRenderMode.Normal));
+            }
+
+            classes += "label-danger ";
+            spanBuilder.MergeAttribute("class", classes);
+            spanBuilder.InnerHtml = "Ngừng hoạt động";
+            return new MvcHtmlString(spanBuilder.ToString(TagRenderMode.Normal));
+        }
+        public static MvcHtmlString LabelDeleted(this HtmlHelper helper, bool status)
+        {
+            var classes = "label ";
+            var spanBuilder = new TagBuilder("span");
+            if (!status)
+            {
+                classes += "label-success ";
+                spanBuilder.MergeAttribute("class", classes);
+                spanBuilder.InnerHtml = "Hoạt động";
+                return new MvcHtmlString(spanBuilder.ToString(TagRenderMode.Normal));
+            }
+
+            classes += "label-danger ";
+            spanBuilder.MergeAttribute("class", classes);
+            spanBuilder.InnerHtml = "Ngừng hoạt động";
+            return new MvcHtmlString(spanBuilder.ToString(TagRenderMode.Normal));
+        }
+        public static MvcHtmlString LabelIsEdited(this HtmlHelper helper, DateTime? dateTime, bool isDeleted)
+        {
+            var classes = "";
+            var spanBuilder = new TagBuilder("span");
+            if (dateTime != null && isDeleted == false)
+            {
+                classes += "edited";
+                spanBuilder.MergeAttribute("class", classes);
+                spanBuilder.InnerHtml = "edited";
+                spanBuilder.MergeAttribute("data-toggle", "tooltip");
+                spanBuilder.MergeAttribute("title", $"vào lúc {dateTime:HH:mm} ngày {dateTime:dd/MM/yyyy}");
+                return new MvcHtmlString(spanBuilder.ToString(TagRenderMode.Normal));
+            }
+            return new MvcHtmlString(spanBuilder.ToString(TagRenderMode.Normal));
+        }
+        public static MvcHtmlString ShowTrashButton(this HtmlHelper helper, bool showButton, string trashLink, string backLink)
+        {
+            var classes = "btn btn-sm margin-left-8 ";
+            var linkBuilder = new TagBuilder("a");
+            var icon = new TagBuilder("i");
+
+            if (showButton)
+            {
+                icon.MergeAttribute("class", "fa fa-trash");
+                classes += "btn-warning";
+                linkBuilder.MergeAttribute("class", classes);
+                linkBuilder.MergeAttribute("href", trashLink);
+                linkBuilder.InnerHtml = icon + " Thùng rác";
+                return new MvcHtmlString(linkBuilder.ToString(TagRenderMode.Normal));
+            }
+            icon.MergeAttribute("class", "fa fa-reply");
+            classes += "btn-success";
+            linkBuilder.MergeAttribute("class", classes);
+            linkBuilder.MergeAttribute("href", backLink);
+            linkBuilder.InnerHtml = icon + " Trở về";
+            return new MvcHtmlString(linkBuilder.ToString(TagRenderMode.Normal));
         }
     }
 }

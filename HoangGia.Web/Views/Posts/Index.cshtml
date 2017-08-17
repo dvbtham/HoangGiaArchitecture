@@ -1,0 +1,142 @@
+﻿@using HoangGia.Model.Entities
+@using HoangGia.Web.ViewModels
+@model HoangGia.Web.Infrastructure.Core.PaginationSet<PostViewModel>
+@{
+    ViewBag.Title = "Cẩm nang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Page title -->
+<div class="page-title parallax parallax1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-title-heading">
+                    <h1 class="title">Cẩm nang </h1>
+                    <div class="breadcrumbs">
+                        <ul>
+                            <li>Bạn đang ở đây:</li>
+                            <li><a href="/">Trang chủ</a></li>
+                            <li>Tất cả cẩm nang</li>
+                        </ul>
+                    </div>
+                </div><!-- /.page-title-captions -->
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.page-title -->
+<div class="main-content blog style">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="content-wrap">
+                    <div class="main-content-wrap">
+                        @foreach (var item in Model.Items)
+                        {
+                            <article class="post">
+                                <div class="feature-post blog-slider">
+                                    <a href="@Url.Action("Details", "Posts", new { id = item.Id })"><img src="@item.Image" alt="@item.Name"></a>
+                                </div><!-- /.feature-post -->
+                                <div class="header-post">
+                                    <p class="time-post">@item.CreatedDate</p>
+                                    <h2 class="title-post">
+                                        <a href="@Url.Action("Details", "Posts", new { id = item.Id })">@item.Name</a>
+                                    </h2>
+                                </div><!-- /.header-post -->
+
+                                <div class="content-post">
+                                    <p>@(item.Description.Length > 150 ? item.Description.Substring(0, 150) + "..." : item.Description)</p>
+                                    <div class="readmore">
+                                        <a href="@Url.Action("Details", "Posts", new { id = item.Id })">Đọc thêm</a>
+                                    </div>
+
+                                    <div class="meta-post">
+                                        <span>Đăng bởi</span>
+                                        <span><a href="#">@(item.CreatedBy == "" ? "admin" : item.CreatedBy)</a></span>
+                                        <span>trong mục</span>
+                                        <span><a href="#">@item.PostCategory.Name </a></span>
+                                        <span class="comments-link"><a href="#">@item.ViewCount</a></span>
+                                    </div>
+
+                                </div><!-- /.content-post -->
+                            </article><!-- /.post -->
+                        }
+                    </div><!-- /.main-content-wrap -->
+                </div><!-- /.content-wrap -->
+            </div><!-- /.col-md-9 -->
+
+            <div class="col-md-3">
+                <div class="sidebars">
+                    <div class="sidebars-wrap">
+                        <div class="sidebar">
+                            <div class="widget widget_search">
+                                <form class="search-form">
+                                    @using (Html.BeginForm("Index", "Posts", FormMethod.Get, new { @class = "search-form" }))
+                                    {
+                                        <input type="search" name="q" value="@ViewBag.q" class="search-field" placeholder="Nhập từ khóa và enter …">
+                                        <input type="submit" class="search-submit">
+                                    }
+
+                                </form>
+                            </div><!-- /.widget_search -->
+                        
+                            @{Html.RenderAction("Categories", "Posts");}
+
+                            @{Html.RenderAction("PopularPost", "Posts");}
+
+                            @{Html.RenderAction("TagsWidget","Posts");}
+                        </div><!-- .sidebar -->
+                    </div><!-- /.sidebars-wrap -->
+                </div><!-- /.sidebars -->
+            </div><!-- /.col-md-3 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.main-content -->
+
+@if (Model.TotalPages > 1)
+{
+    var startPageIndex = Math.Max(1, Model.Page - Model.MaxPage / 2);
+    var endPageIndex = Math.Min(Model.TotalPages, Model.Page + Model.MaxPage / 2);
+
+    <nav class="text-center">
+        <ul class="pagination">
+            @if (Model.Page > 1)
+            {
+                <li>
+                    <a href="?page=1" data-toggle="tooltip" title="Trang đầu" aria-label="First">
+                        <i class="fa fa-angle-double-left"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="?page=@(Model.Page-1)" data-toggle="tooltip" title="Trang sau" aria-label="Previous">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                </li>
+            }
+
+            @for (int i = startPageIndex; i <= endPageIndex; i++)
+            {
+                if (Model.Page == i)
+                {
+                    <li class="active"><a href="?page=@i" data-toggle="tooltip" title="Trang @i">@i</a></li>
+                }
+                else
+                {
+                    <li><a href="?page=@i" data-toggle="tooltip" title="Trang @i">@i</a></li>
+                }
+            }
+            @if (Model.Page < Model.TotalPages)
+            {
+                <li>
+                    <a href="?page=@(Model.Page+1)" data-toggle="tooltip" title="Trang tiếp theo" aria-label="Next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="?page=@Model.TotalPages" data-toggle="tooltip" title="Trang cuối" aria-label="Last">
+                        <i class="fa fa-angle-double-right"></i>
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
+}

@@ -1,0 +1,109 @@
+﻿@using HoangGia.Web.Infrastructure
+@model IEnumerable<HoangGia.Web.ViewModels.PostCategoryViewModel>
+@{
+    ViewBag.AdminTitle = "Danh sách danh mục bài viết";
+    Layout = "~/Areas/AdminHg/Views/Shared/_Layout.cshtml";
+}
+<section class="content">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">@ViewBag.AdminTitle</h3>
+            <!-- Trigger the modal with a button -->
+            <a href="@Url.Action("Create","PostCategory", new {area = "AdminHg"})" class="btn btn-info btn-sm margin-left-8">
+                Thêm danh mục bài viết
+            </a>
+            @Html.ShowTrashButton((bool)ViewBag.TrashButton, "/adminhg/postcategory/trash", "/adminhg/postcategory")
+
+
+        </div><!-- /.box-header -->
+        <div class="box-body">
+            <table id="myTable" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Tên danh mục</th>
+                    <th>Danh mục cha</th>
+                    <th>Mô tả</th>
+                    <th>Thứ tự</th>
+                    <th>Trạng thái</th>
+                    <th>Thao tác</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var category in Model)
+                {
+                    <tr>
+                        <td>@category.Id</td>
+                        <td>
+                            <a href="@Url.Action("Edit", "PostCategory", new { id = category.Id})">
+                                @category.Name
+                            </a>
+                        </td>
+                        <td>@category.ParentName</td>
+                        <td>@category.Description</td>
+                        <td>#@category.DisplayOrder</td>
+                        <td>
+                            @Html.LabelDeleted(category.IsDeleted)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Edit", "PostCategory", new { id = category.Id})">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                            <a href="javascript:void(0);">
+                                <i data-name="@category.Name" data-id="@category.Id" class="fa fa-trash margin-left-8 btn-delete"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.box-body -->
+    </div>
+
+</section>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+
+            $("input[type='search']").attr('placeholder', 'Nhập tên danh mục để tìm...');
+            $('.btn-delete').click(function (e) {
+                e.preventDefault();
+                var link = $(e.target);
+                bootbox.dialog({
+                    message: "Bạn chắc chắn muốn xóa danh mục bài viết <strong>" + link.attr('data-name') + "</strong>?",
+                    title: "Xác nhận xóa",
+                    buttons: {
+                        no: {
+                            label: "Hủy",
+                            className: "btn-default",
+                            callback: function () {
+                                bootbox.hideAll();
+                            }
+                        },
+                        yes: {
+                            label: "Xóa ",
+                            className: "btn-danger",
+                            callback: function () {
+                                $.ajax({
+                                    url: "/AdminHg/PostCategory/Delete/" + link.attr('data-id'),
+                                    method: "post",
+                                    success: function () {
+                                        link.parents("tr").fadeOut(function () {
+                                            $(this).remove();
+                                        });
+                                    },
+                                    error: function () {
+                                        bootbox.alert("Lỗi xảy ra. Vui lòng liên hệ với bộ phận dev.");
+                                    }
+                                });
+                            }
+                        }
+                    }
+                });
+            });
+
+        });
+    </script>
+}

@@ -8,62 +8,64 @@
     <link href="~/Resources/stylesheets/justifiedGallery.css" rel="stylesheet" />
     <link href="~/Resources/stylesheets/magnific-popup.css" rel="stylesheet" />
 }
-
-<div class="box">
-    <div class="box-header">
-        <h3 class="box-title">@ViewBag.AdminTitle</h3>
-    </div><!-- /.box-header -->
-    <div class="box-body">
-        <div class="col-md-12">
-            <div class="panel-group" id="accordion">
-                @foreach (var item in Model)
-                {
-                    <div class="panel panel-success">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse-@item.Id">
-                                    @item.Name
-                                </a>
-                                <label class="badge">@item.ProjectImages.Count() ảnh</label>
-                                <label id="lblAdd" data-id="@item.Id" data-toggle="modal" data-project-name="@item.Name" data-target="#myModal" class="label label-warning margin-left-8 lblAdd">Thêm ảnh</label>
-                            </h4>
-                        </div>
-                        <div id="collapse-@item.Id" class="panel-collapse collapse in">
-                            <div class="panel-body project-images">
-                                @if (item.ProjectImages.Any())
-                                {
-                                    foreach (var image in item.ProjectImages)
+<section class="content">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">@ViewBag.AdminTitle</h3>
+        </div><!-- /.box-header -->
+        <div class="box-body">
+            <div class="col-md-12">
+                <div class="panel-group" id="accordion">
+                    @foreach (var item in Model)
+                    {
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse-@item.Id">
+                                        @item.Name
+                                    </a>
+                                    <label class="badge">@item.ProjectImages.Count() ảnh</label>
+                                    <label id="lblAdd" data-id="@item.Id" data-toggle="modal" data-project-name="@item.Name" data-target="#myModal" class="label label-warning margin-left-8 lblAdd">Thêm ảnh</label>
+                                </h4>
+                            </div>
+                            <div id="collapse-@item.Id" class="panel-collapse collapse in">
+                                <div class="panel-body project-images">
+                                    @if (item.ProjectImages.Any())
                                     {
-                                        <div class="project-image">
-                                            <img alt="@item.Name" class="img-responsive" src="@image.ImageUrl" />
-                                            <div class="actions-box">
-                                                <div class="actions">
-                                                    <a class="popup-gallery" href="@image.ImageUrl">
-                                                        <i class="fa fa-eye fa-2x" data-toggle="tooltip" title="Xem ảnh"></i>
-                                                    </a>
-                                                    <a href="#">
-                                                        <i class="fa fa-trash fa-2x text-danger delete-project-image" data-id="@image.Id" data-toggle="tooltip" title="Xóa ảnh"></i>
-                                                    </a>
+                                        foreach (var image in item.ProjectImages)
+                                        {
+                                            <div class="project-image">
+                                                <img alt="@item.Name" class="img-responsive" src="@image.ImageUrl" />
+                                                <div class="actions-box">
+                                                    <div class="actions">
+                                                        <a class="popup-gallery" href="@image.ImageUrl">
+                                                            <i class="fa fa-eye fa-2x" data-toggle="tooltip" title="Xem ảnh"></i>
+                                                        </a>
+                                                        <a href="#">
+                                                            <i class="fa fa-trash fa-2x text-danger delete-project-image" data-id="@image.Id" data-toggle="tooltip" title="Xóa ảnh"></i>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        }
                                     }
-                                }
-                                else
-                                {
-                                    <p class="text-danger text-center">Không có hình ảnh cho dự án này!</p>
-                                }
+                                    else
+                                    {
+                                        <p class="text-danger text-center">Không có hình ảnh cho dự án này!</p>
+                                    }
+                                </div>
                             </div>
                         </div>
-                    </div>
-                }
+                    }
 
+                </div>
             </div>
+            <!-- /.box-body -->
         </div>
-        <!-- /.box-body -->
+        <!-- /.box -->
     </div>
-    <!-- /.box -->
-</div>
+    
+</section>
 
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">

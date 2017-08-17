@@ -1,0 +1,157 @@
+﻿@using HoangGia.Web.Infrastructure
+@model HoangGia.Web.Infrastructure.Core.PaginationSet<HoangGia.Web.ViewModels.PostViewModel>
+@{
+    ViewBag.AdminTitle = "Quản lý tin tức";
+    Layout = "~/Areas/AdminHg/Views/Shared/_Layout.cshtml";
+}
+<section class="content">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">@ViewBag.AdminTitle</h3>
+            <!-- Trigger the modal with a button -->
+            <a href="@Url.Action("Create","Post", new {area = "AdminHg"})" class="btn btn-info btn-sm margin-left-8">
+                Thêm tin tức
+            </a>
+        </div><!-- /.box-header -->
+
+        <div class="box-body">
+            <div class="col-md-12">
+                @using (Html.BeginForm("Index", "Post", FormMethod.Get))
+                {
+                    <div class="input-group">
+                        <input type="text" value="@ViewBag.SearchString" name="q" class="form-control" placeholder="Nhập tiêu đề, nội dung, id để tìm...">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-info btn-flat">Tìm</button>
+                        </span>
+                    </div>
+                }
+                <!-- Box Comment -->
+                @foreach (var item in Model.Items)
+                {
+                    <div class="box box-widget">
+                        <div class="box-header with-border">
+                            <div class="user-block">
+                                <img class="img-circle" src="@item.Image" alt="@item.Name">
+                                <span class="username"><a href="@Url.Action("Edit","Post", new { id = item.Id })">@item.Name</a></span>
+                                <span class="description">@item.CreatedDate @Html.LabelIsEdited(item.UpdatedDate, item.IsDeleted)</span>
+                            </div>
+                            <!-- /.user-block -->
+                            <div class="box-tools">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            </div>
+                            <!-- /.box-tools -->
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <!-- post text -->
+                            <p>@item.Description</p>
+                        </div>
+                        <div class="box-footer">
+                            <!-- Social sharing buttons -->
+                            <button type="button" onclick="window.location.href='/adminhg/post/edit/'+ @item.Id" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Chỉnh sửa</button>
+                            <button type="button" data-name="@item.Name" data-id="@item.Id" class="btn btn-danger btn-xs btn-delete"><i class="fa fa-trash"></i> Xóa</button>
+                            <span class="pull-right text-muted">45 lượt thích - 2 bình luận</span>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                }
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+
+</section>
+@if (Model.TotalPages > 1)
+{
+    var startPageIndex = Math.Max(1, Model.Page - Model.MaxPage / 2);
+    var endPageIndex = Math.Min(Model.TotalPages, Model.Page + Model.MaxPage / 2);
+
+    <nav class="text-center">
+        <ul class="pagination">
+            @if (Model.Page > 1)
+            {
+                <li>
+                    <a href="?page=1" data-toggle="tooltip" title="Trang đầu" aria-label="First">
+                        <i class="fa fa-angle-double-left"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="?page=@(Model.Page-1)" data-toggle="tooltip" title="Trang sau" aria-label="Previous">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                </li>
+            }
+
+            @for (int i = startPageIndex; i <= endPageIndex; i++)
+            {
+                if (Model.Page == i)
+                {
+                    <li class="active"><a href="?page=@i" data-toggle="tooltip" title="Trang @i">@i</a></li>
+                }
+                else
+                {
+                    <li><a href="?page=@i" data-toggle="tooltip" title="Trang @i">@i</a></li>
+                }
+            }
+            @if (Model.Page < Model.TotalPages)
+            {
+                <li>
+                    <a href="?page=@(Model.Page+1)" data-toggle="tooltip" title="Trang tiếp theo" aria-label="Next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="?page=@Model.TotalPages" data-toggle="tooltip" title="Trang cuối" aria-label="Last">
+                        <i class="fa fa-angle-double-right"></i>
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
+}
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('.btn-delete').click(function (e) {
+                e.preventDefault();
+                var link = $(e.target);
+                bootbox.dialog({
+                    message: "Bạn chắc chắn muốn xóa tin này <strong>" + link.attr('data-name') + "</strong>?",
+                    title: "Xác nhận xóa",
+                    buttons: {
+                        no: {
+                            label: "Hủy",
+                            className: "btn-default",
+                            callback: function () {
+                                bootbox.hideAll();
+                            }
+                        },
+                        yes: {
+                            label: "Xóa ",
+                            className: "btn-danger",
+                            callback: function () {
+                                $.ajax({
+                                    url: "/AdminHg/Post/Delete/" + link.attr('data-id'),
+                                    method: "post",
+                                    success: function () {
+                                        window.location.href = '/adminhg/post';
+                                    },
+                                    error: function () {
+                                        bootbox.alert("Lỗi xảy ra. Vui lòng liên hệ với bộ phận dev.");
+                                    }
+                                });
+                            }
+                        }
+                    }
+                });
+            });
+
+        });
+    </script>
+}

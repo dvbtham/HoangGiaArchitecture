@@ -13,6 +13,7 @@ namespace HoangGia.Service.Services
         IEnumerable<Project> GetInclude(string keyword = null, string[] includes = null);
         IEnumerable<Project> ActivingProjects(string[] includes = null);
         IEnumerable<Project> GetRelatedProjects(int id, int categoryId, string[] includes = null);
+        void MoveToTrash(int id);
     }
     public class ProjectService : IProjectService
     {
@@ -71,14 +72,21 @@ namespace HoangGia.Service.Services
 
         public IEnumerable<Project> ActivingProjects(string[] includes)
         {
-            var query = _projectRepository.GetAll(includes);
+            var query = _projectRepository.GetMulti(x => x.IsDeleted == false, includes);
             return query;
         }
-        
+
         public IEnumerable<Project> GetRelatedProjects(int id, int categoryId, string[] includes = null)
         {
             var relatedProjects = _projectRepository.GetMulti(x => x.ProjectCategoryId == categoryId && !x.IsDeleted && x.Id != id, includes);
             return relatedProjects;
+        }
+
+        public void MoveToTrash(int id)
+        {
+            var project = FindById(id);
+            project.IsDeleted = true;
+            SaveChanges();
         }
     }
 }

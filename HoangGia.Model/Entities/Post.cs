@@ -34,6 +34,9 @@ namespace HoangGia.Model.Entities
         [Required]
         public string Content { get; set; }
 
+        [MaxLength(256)]
+        public string Tags { get; set; }
+
         public bool? HomeFlag { get; set; }
         public bool? HotFlag { get; set; }
         public int? ViewCount { get; set; }

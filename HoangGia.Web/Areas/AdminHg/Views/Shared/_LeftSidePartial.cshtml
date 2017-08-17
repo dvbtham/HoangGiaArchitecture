@@ -63,6 +63,22 @@
                 </ul>
             </li>
             <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-archive"></i>
+                    <span>Nội dung</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("Index","PostCategory", new { area = "AdminHg"})"><i class="fa fa-caret-square-o-right"></i> Quản lý Danh mục bài viết</a></li>
+                </ul>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("Index","Post", new { area = "AdminHg"})"><i class="fa fa-book"></i> Quản lý Bài viết</a></li>
+                </ul>
+                
+            </li>
+            <li class="treeview">
                 <a href="@Url.Action("Index","Services", new { area = "AdminHg"})">
                     <i class="fa fa-support"></i>
                     <span>Quản lý Dịch vụ</span>

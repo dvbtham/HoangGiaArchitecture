@@ -1,0 +1,11 @@
+﻿@using HoangGia.Web.ViewModels
+@model IEnumerable<PostCategoryViewModel>
+<div class="widget widget_categories">
+    <h3 class="widget-title">Danh mục</h3>
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li class="cat-item"><a href="@Url.Action("PostByCategory","Posts", new { id = item.Id})">@item.Name</a></li>
+        }
+    </ul>
+</div><!-- /.widget_categories -->

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using AutoMapper;
@@ -26,10 +27,19 @@ namespace HoangGia.Web.Areas.AdminHg.Controllers
 
         public ActionResult Index()
         {
-            var projects = _projectService.GetInclude(null, new[] { "ProjectCategory" });
+            ViewBag.TrashButton = true;
+            var projects = _projectService.ActivingProjects(new[] { "ProjectCategory" });
+            var projectsMapper = Mapper.Map<IEnumerable<Project>, IEnumerable<ProjectViewModel>>(projects);
+            return PartialView("_ProjectsPartial", projectsMapper);
+        }
+
+        public ActionResult Trash()
+        {
+            ViewBag.TrashButton = false;
+            var projects = _projectService.GetInclude(null, new[] { "ProjectCategory" }).Where(x => x.IsDeleted);
             var projectsMapper = Mapper.Map<IEnumerable<Project>, IEnumerable<ProjectViewModel>>(projects);
 
-            return View(projectsMapper);
+            return PartialView("_ProjectsPartial", projectsMapper);
         }
 
         public IEnumerable<ProjectCategoryViewModel> Categories()
@@ -115,6 +125,7 @@ namespace HoangGia.Web.Areas.AdminHg.Controllers
             {
                 var project = _projectService.FindById(viewModel.Id);
                 project.ProjectMapper(viewModel);
+                project.UpdatedDate = DateTime.Now;
                 _projectService.Update(project);
                 _projectService.SaveChanges();
                 return RedirectToAction("Index", "Project");
@@ -128,7 +139,7 @@ namespace HoangGia.Web.Areas.AdminHg.Controllers
         [HttpPost]
         public JsonResult Delete(int id)
         {
-            _projectService.Delete(id);
+            _projectService.MoveToTrash(id);
             _projectService.SaveChanges();
             return Json(new { response = "Xóa thành công" });
         }

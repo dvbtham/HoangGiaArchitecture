@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using AutoMapper;
+﻿using AutoMapper;
 using HoangGia.Entities;
 using HoangGia.Model.Entities;
 using HoangGia.Web.ViewModels;
 
-namespace HoangGia.Web.App_Start
+namespace HoangGia.Web
 {
     public class AutoMapperConfiguration
     {
@@ -18,6 +14,8 @@ namespace HoangGia.Web.App_Start
                 x.CreateMap<Menu, MenuViewModel>();
                 x.CreateMap<Model.Entities.Service, ServiceViewModel>();
                 x.CreateMap<Project, ProjectViewModel>();
+                x.CreateMap<Post, PostViewModel>();
+                x.CreateMap<PostCategory, PostCategoryViewModel>();
                 x.CreateMap<ProjectImage, ProjectImageViewModel>();
                 x.CreateMap<ProjectCategory, ProjectCategoryViewModel>();
             });

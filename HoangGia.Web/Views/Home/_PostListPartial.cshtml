@@ -1,0 +1,59 @@
+﻿@using System.Globalization
+@model IEnumerable<HoangGia.Web.ViewModels.PostViewModel>
+<section class="flat-row" style="background-color: #f2f2f2;">
+    <div class="container">
+        <div class="row">
+            <div class="flat-tabs">
+                <ul class="menu-tab">
+                    <li class="active"><a href="#"><i class="fa fa-newspaper-o"></i><br><span>Cẩm nang</span></a></li>
+                </ul>
+                <!-- /.menu-tab -->
+                <div class="content-tab">
+                    <div class="content-inner">
+                        <div class="main-content blog-grid">
+                            <div class="content-wrap">
+                                <div class="main-content-wrap">
+                                    @foreach (var item in Model)
+                                    {
+                                        <div class="item">
+                                            <article class="post">
+                                                <div class="feature-post">
+                                                    <a href="@Url.Action("Details", "Posts", new { id = item.Id })"><img src="@item.Image" alt="@item.Name"></a>
+                                                </div>
+                                                <!-- /.feature-post -->
+                                                <div class="header-post">
+                                                    <h4 class="title-post"><a href="@Url.Action("Details", "Posts", new { id = item.Id })">@item.Name</a></h4>
+                                                    <p class="time-post">@item.CreatedDate</p>
+                                                </div>
+                                                <!-- /.header-post -->
+                                                <div class="content-post">
+                                                    <p>@(item.Description.Length > 80 ? item.Description.Substring(0, 80) + "..." : item.Description)</p>
+                                                </div>
+                                                <!-- /.content-post -->
+                                            </article>
+                                        </div>
+                                    }
+                                    <div class="flat-button">
+                                        <a href="@Url.Action("Index","Posts")">Xem tất cả</a>
+                                    </div>
+                                </div>
+                                <!-- /.item -->
+
+                            </div>
+                            <!-- /.main-content-wrap -->
+                        </div>
+                        <!-- /.content-wrap -->
+                    </div>
+                    <!-- /.blog-grid -->
+                </div>
+                <!-- /.content-inner -->
+
+            </div>
+            <!-- /.content-tab -->
+        </div>
+        <!-- /.flat-tabs -->
+    </div>
+    <!-- /.row -->
+    <!-- /.container -->
+</section>
+

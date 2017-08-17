@@ -10,6 +10,11 @@ namespace HoangGia.Service.Services
     public interface IPostCategoryService : ICrudService<PostCategory>, IGetDataService<PostCategory>
     {
         IEnumerable<PostCategory> GetAllByParentId(int parentId);
+
+        IEnumerable<PostCategory> ActivingCategories();
+
+        IEnumerable<PostCategory> TrashedCategories();
+
         void IsDeleted(int id);
     }
 
@@ -50,6 +55,16 @@ namespace HoangGia.Service.Services
             return _postCategoryRepository.GetMulti(x => x.ParentId == parentId);
         }
 
+        public IEnumerable<PostCategory> ActivingCategories()
+        {
+            return _postCategoryRepository.GetMulti(x => x.IsDeleted == false);
+        }
+
+        public IEnumerable<PostCategory> TrashedCategories()
+        {
+            return _postCategoryRepository.GetMulti(x => x.IsDeleted);
+        }
+
 
         public void IsDeleted(int id)
         {
@@ -65,7 +80,7 @@ namespace HoangGia.Service.Services
 
         public IEnumerable<PostCategory> GetAll(string keyword = null)
         {
-            var query = _postCategoryRepository.GetMulti(x => !x.IsDeleted);
+            var query = _postCategoryRepository.GetAll();
             if (!string.IsNullOrEmpty(keyword))
             {
                 query = query.Where(x => x.Name.Contains(keyword) || x.Description.Contains(keyword));

@@ -1,0 +1,72 @@
+﻿@using HoangGia.Web.Infrastructure
+@model HoangGia.Web.ViewModels.PostCategoryViewModel
+@{
+    ViewBag.AdminTitle = Model.Heading;
+    Layout = "~/Areas/AdminHg/Views/Shared/_Layout.cshtml";
+}
+<section class="content">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">@Model.Heading</h3>
+        </div><!-- /.box-header -->
+        <div class="box-body">
+            @using (Html.BeginForm(Model.Action, "PostCategory"))
+            {
+                <div class="col-md-6">
+                    <p class="alert alert-info">Thông tin <strong> bắt buộc (*)</strong>.</p>
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(x => x.Id)
+                    <div class="input-group">
+                        <span class="input-group-addon" data-toggle='tooltip' title="@Html.DisplayNameFor(x=>x.Name)">
+                            <i class="fa fa-user"></i>
+                        </span>
+                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "Tên danh mục bài viết (*)" })
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon" data-toggle='tooltip' title="Chọn menu cha">
+                            <i class="fa fa-th"></i>
+                        </span>
+                        <div class="form-group">
+                            @Html.HgDropdownListFor(x => x.ParentId, Model.Categories)
+                        </div>
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon" data-toggle='tooltip' title="@Html.DisplayNameFor(x=>x.Description)">
+                            <i class="fa fa-ticket"></i>
+                        </span>
+                        @Html.TextAreaFor(x => x.Description, new { @class = "form-control", placeholder = "Mô tả" })
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon" data-toggle='tooltip' title="@Html.DisplayNameFor(x=>x.DisplayOrder)">
+                            #123
+                        </span>
+                        @Html.TextBoxFor(x => x.DisplayOrder, new { @class = "form-control", type = "number", placeholder = @Html.DisplayNameFor(x => x.DisplayOrder) })
+                    </div>
+                    <br />
+                    @if (Model.Action == "Update")
+                    {
+                        <div class="input-group" data-toggle='tooltip' title="@Html.DisplayNameFor(x=>x.IsDeleted)">
+                            <span class="checkbox-addon">
+                                @Html.CheckBoxFor(x => x.IsDeleted, new { @id = "isDeleted" })
+                            </span>
+                            <label for="isDeleted" class="pointer">Xóa danh mục này?</label>
+                        </div>
+                        <br />
+                    }
+
+                </div>
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                    <button type="button" onclick="window.location.href='/adminhg/postcategory'" class="btn btn-danger">Hủy</button>
+                </div>
+            }
+
+        </div>
+        <!-- /.box-body -->
+    </div>
+
+</section>

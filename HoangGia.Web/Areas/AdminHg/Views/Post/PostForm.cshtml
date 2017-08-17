@@ -1,0 +1,82 @@
+﻿@using HoangGia.Web.Infrastructure
+@model HoangGia.Web.ViewModels.PostViewModel
+@{
+    ViewBag.AdminTitle = Model.Heading;
+    Layout = "~/Areas/AdminHg/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">@Model.Heading</h3>
+        </div><!-- /.box-header -->
+        <div class="box-body">
+            @using (Html.BeginForm(Model.Action, "Post"))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                @Html.HiddenFor(x => x.Id)
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <span class="input-group-addon" data-toggle='tooltip' title="@Html.DisplayNameFor(x=>x.Description)">
+                            <i class="fa fa-ticket"></i>
+                        </span>
+                        @Html.TextAreaFor(x => x.Description, new { @class = "form-control", placeholder = "Mô tả" })
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon" data-toggle='tooltip' title="@Html.DisplayNameFor(x=>x.Content)">
+                            <i class="fa fa-th"></i>
+                        </span>
+                        @Html.TextAreaFor(x => x.Content, new { @class = "form-control", placeholder = "Nội dung", @name = "content", id = "content" })
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-addon" data-toggle='tooltip' title="@Html.DisplayNameFor(x=>x.Name)">
+                            <i class="fa fa-user"></i>
+                        </span>
+                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "Tiêu đề (*)" })
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon" data-toggle='tooltip' title="Chọn danh mục tin">
+                            <i class="fa fa-th"></i>
+                        </span>
+                        <div class="form-group">
+                            @Html.HgDropdownListFor(x => x.CategoryId, Model.Categories)
+                        </div>
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon" id="btnImage" data-toggle='tooltip' title="@Html.DisplayNameFor(x=>x.Image)">
+                            <i class="fa fa-picture-o"></i>
+                        </span>
+                        @Html.TextBoxFor(x => x.Image, new { @class = "form-control", @readonly = "readonly", placeholder = "Đường dẫn hình ảnh...", id = "txtImageUrl" })
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon" data-toggle='tooltip' title="@Html.DisplayNameFor(x=>x.Tags)">
+                            <i class="fa fa-tags"></i>
+                        </span>
+                        @Html.TextBoxFor(x => x.Tags, new { @class = "form-control", placeholder = "thẻ gán (*)" })
+                    </div>
+                    <br />
+                    Bài viết nổi bật @Html.EditorFor(x => x.HotFlag, null, new { @class = "form-control" })
+                    <br />
+                    <br/>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                    <button type="button" onclick="window.location.href = '/adminhg/post'" class="btn btn-danger">Hủy</button>
+                </div>
+            }
+
+        </div>
+        <!-- /.box-body -->
+    </div>
+
+</section>
+@section scripts{
+    <script src="~/Resources/plugins/ckeditor/ckeditor.js"></script>
+    <script src="~/Resources/admin/controllers/postController.js"></script>
+}

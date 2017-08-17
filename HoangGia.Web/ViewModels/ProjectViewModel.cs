@@ -21,7 +21,7 @@ namespace HoangGia.Web.ViewModels
 
         [Display(Name = "Địa chỉ")]
         [MaxLength(256, ErrorMessage = "Chỉ nhập 256 ký tự")]
-        public string Location { get; set; }
+        public string Location { get; set; } = "Việt Nam";
 
         [Required(ErrorMessage = "Bạn chưa chọn danh mục dự án")]
         [Display(Name = "Danh mục dự án")]

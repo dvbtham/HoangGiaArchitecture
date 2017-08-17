@@ -15,13 +15,17 @@ namespace HoangGia.Web.Controllers
         private readonly IServService _serveService;
         private readonly IProjectService _projectService;
         private readonly IProjectCategoryService _projectCategoryService;
+        private readonly IPostService _postService;
 
-        public HomeController(IMenuService menuService, IServService serveService, IProjectService projectService, IProjectCategoryService projectCategoryService)
+        public HomeController(IMenuService menuService, IServService serveService,
+            IProjectService projectService, IProjectCategoryService projectCategoryService,
+            IPostService postService)
         {
             _menuService = menuService;
             _serveService = serveService;
             _projectService = projectService;
             _projectCategoryService = projectCategoryService;
+            _postService = postService;
         }
 
         public ActionResult Index()
@@ -55,6 +59,14 @@ namespace HoangGia.Web.Controllers
             var serviceMapper =
                 Mapper.Map<IEnumerable<Model.Entities.Service>, IEnumerable<ServiceViewModel>>(services);
             return PartialView("_ServiceHomePartial", serviceMapper);
+        }
+
+        [ChildActionOnly]
+        public PartialViewResult Posts()
+        {
+            var posts = _postService.GetAll().OrderByDescending(x => x.CreatedDate).Take(4);
+            var postsMapper = Mapper.Map<IEnumerable<Post>, IEnumerable<PostViewModel>>(posts);
+            return PartialView("_PostListPartial", postsMapper);
         }
 
         [ChildActionOnly]

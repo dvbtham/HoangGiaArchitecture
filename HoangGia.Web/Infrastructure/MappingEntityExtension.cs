@@ -36,6 +36,42 @@ namespace HoangGia.Web.Infrastructure
             service.UpdatedDate = viewModel.UpdatedDate;
             service.ShowOnHome = viewModel.ShowOnHome;
         }
+        public static void PostMapper(this Post post, PostViewModel viewModel)
+        {
+            post.Id = viewModel.Id;
+            post.Name = viewModel.Name;
+            post.Alias = viewModel.Alias;
+            post.Content = viewModel.Content;
+            post.Image = viewModel.Image;
+            post.CategoryId = viewModel.CategoryId;
+            post.Description = viewModel.Description;
+            post.HotFlag = viewModel.HotFlag;
+            post.HomeFlag = viewModel.HomeFlag;
+            post.IsDeleted = viewModel.IsDeleted;
+            post.ViewCount = viewModel.ViewCount;
+            post.Tags = viewModel.Tags;
+
+            post.Description = viewModel.Description;
+            post.MetaDescription = viewModel.MetaDescription;
+            post.MetaKeyword = viewModel.MetaKeyword;
+            post.CreatedBy = viewModel.CreatedBy;
+            post.CreatedDate = DateTime.Now;
+            post.UpdatedBy = viewModel.UpdatedBy;
+            post.UpdatedDate = viewModel.UpdatedDate;
+        }
+        public static void PostCategoryMapper(this PostCategory postCategory, PostCategoryViewModel viewModel)
+        {
+            postCategory.Id = viewModel.Id;
+            postCategory.Name = viewModel.Name;
+            postCategory.Image = viewModel.Image;
+            postCategory.ParentId = viewModel.ParentId;
+            postCategory.Description = viewModel.Description;
+            postCategory.HomeFlag = viewModel.HomeFlag;
+            postCategory.IsDeleted = viewModel.IsDeleted;
+            postCategory.Description = viewModel.Description;
+            postCategory.DisplayOrder = viewModel.DisplayOrder;
+            postCategory.Alias = viewModel.Alias;
+        }
         public static void ProjectCategoryMapper(this ProjectCategory projectCategory, ProjectCategoryViewModel viewModel)
         {
             projectCategory.Id = viewModel.Id;

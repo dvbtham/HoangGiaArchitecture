@@ -26,6 +26,13 @@
 .pointer {
     cursor: pointer;
 }
+.edited {
+    margin-left: 5px;
+    font-size: 12px;
+    color: #860f0f;
+    color: rgba(134, 15, 15, 0.58);
+    cursor: pointer;
+}
 
 .input-group .checkbox-addon {
     border: 1px solid #d2d6de;

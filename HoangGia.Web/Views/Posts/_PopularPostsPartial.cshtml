@@ -1,0 +1,13 @@
+﻿@using HoangGia.Web.ViewModels
+@model IEnumerable<PostViewModel>
+<div class="widget widget_recent_entries">
+    <h3 class="widget-title">Bài viết nổi bật</h3>
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li><a href="@Url.Action("Details","Posts", new { id = item.Id})">@item.Name</a></li>
+        }
+
+    </ul>
+</div>
+<!-- /.widget_popular_entries -->

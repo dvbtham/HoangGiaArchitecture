@@ -1,0 +1,11 @@
+﻿@model IEnumerable<HoangGia.Model.Entities.Tag>
+<div class="widget widget_tag_cloud">
+    <h3 class="widget-title">Tags</h3>
+    <div class="tagcloud">
+        @foreach (var item in Model)
+        {
+            <a href="@Url.Action("PostByTag","Posts", new { tag = item.Name})">@item.Name</a>
+        }
+    </div>
+</div>
+<!-- /.widget_tag_cloud -->

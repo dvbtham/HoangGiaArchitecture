@@ -24,7 +24,7 @@ namespace HoangGia.Web.Areas.AdminHg.Controllers
 
         public JsonResult List()
         {
-            var data = _projectCategoryService.GetAll();
+            var data = _projectCategoryService.GetWorkingProjectCategories();
             return Json(new { response = data }, JsonRequestBehavior.AllowGet);
         }
 

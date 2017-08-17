@@ -1,0 +1,103 @@
+﻿@model HoangGia.Web.ViewModels.PostViewModel
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Page title -->
+<div class="page-title parallax parallax1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-title-heading">
+                    <h1 class="title">Cẩm nang </h1>
+                    <div class="breadcrumbs">
+                        <ul>
+                            <li>Bạn đang ở đây:</li>
+                            <li><a href="/">Trang chủ</a></li>
+                            <li>Tất cả cẩm nang</li>
+                        </ul>
+                    </div>
+                </div><!-- /.page-title-captions -->
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.page-title -->
+<div class="main-content blog style">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="content-wrap">
+                    <div class="main-content-wrap">
+                            <article class="post">
+                                <div class="feature-post blog-slider">
+                                    <img src="@Model.Image" alt="@Model.Name">
+                                </div><!-- /.feature-post -->
+                                <div class="header-post">
+                                    <p class="time-post">@Model.CreatedDate</p>
+                                    <h2 class="title-post">@Model.Name</h2>
+                                </div><!-- /.header-post -->
+
+                                <div class="content-post">
+                                    @Html.Raw(Model.Content)
+
+                                    <div class="meta-post">
+                                        <span>Đăng bởi</span>
+                                        <span><a href="javascript:void();">@(Model.CreatedBy == "" ? "admin" : Model.CreatedBy)</a></span>
+                                        <span>trong mục</span>
+                                        <span><strong>@Model.PostCategory.Name </strong></span>
+                                        <span class="comments-link"><i class="fa fa-eye"></i>&nbsp;@Model.ViewCount</span>
+                                    </div>
+
+                                </div><!-- /.content-post -->
+                            </article><!-- /.post -->
+                        
+                    </div><!-- /.main-content-wrap -->
+               
+                    <nav class="navigation post-navigation">
+                        <ul class="nav-links">
+                            @if (Model.Prev != null)
+                            {
+                                <li class="previous-post" title="@Model.Prev.Name">
+                                    <a href="@Url.Action("Details", "Posts", new {id = Model.Prev?.Id})">
+                                        <span class="meta-nav">Bài viết cũ </span> @(Model.Prev.Name.Length > 50 ? Model.Prev.Name.Substring(0, 50) + "..." : Model.Prev.Name)</a>
+                                </li>
+                            }
+                           
+                           @if (Model.Next != null)
+                           {
+                               <li class="next-post" title="@Model.Next.Name">
+                                   <a href="@Url.Action("Details", "Posts", new {id = Model.Next?.Id})"><span class="meta-nav">Bài viết mới</span> @(Model.Next.Name.Length > 50 ? Model.Next.Name.Substring(0, 50) + "..." : Model.Next.Name)</a>
+                               </li>
+                           }
+                        </ul><!-- /.nav-links -->
+                    </nav>
+                </div><!-- /.content-wrap -->
+            </div><!-- /.col-md-9 -->
+
+            <div class="col-md-3">
+                <div class="sidebars">
+                    <div class="sidebars-wrap">
+                        <div class="sidebar">
+                            <div class="widget widget_search">
+                                <form class="search-form">
+                                    @using (Html.BeginForm("Index", "Posts", FormMethod.Get, new { @class = "search-form" }))
+                                    {
+                                        <input type="search" name="q" value="@ViewBag.q" class="search-field" placeholder="Nhập từ khóa và enter …">
+                                        <input type="submit" class="search-submit">
+                                    }
+
+                                </form>
+                            </div><!-- /.widget_search -->
+
+                            @{Html.RenderAction("Categories", "Posts");}
+
+                            @{Html.RenderAction("PopularPost", "Posts");}
+
+                            @{Html.RenderAction("TagsWidget", "Posts");}
+                        </div><!-- .sidebar -->
+                    </div><!-- /.sidebars-wrap -->
+                </div><!-- /.sidebars -->
+            </div><!-- /.col-md-3 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.main-content -->

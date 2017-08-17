@@ -51,6 +51,7 @@
     <Compile Include="Services\ProjectImageService.cs" />
     <Compile Include="Services\ProjectService.cs" />
     <Compile Include="Services\ServService.cs" />
+    <Compile Include="Services\TagService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HoangGia.Data\HoangGia.Data.csproj">
@@ -60,6 +61,10 @@
     <ProjectReference Include="..\HoangGia.Model\HoangGia.Model.csproj">
       <Project>{446468A2-8213-4CF1-A00B-C1498701CA37}</Project>
       <Name>HoangGia.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HoangGia.Utilities\HoangGia.Utilities.csproj">
+      <Project>{5d4d9e9c-27a7-4e79-9c9d-b49520e3a7d8}</Project>
+      <Name>HoangGia.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
