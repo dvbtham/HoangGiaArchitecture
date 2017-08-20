@@ -67,7 +67,7 @@
 
                     <div class="row">
                         <div class="flat-scheme">
-                            <h3>We work for the best quality of services for our clients and our clients appreciate us for that.</h3>
+                            @{Html.RenderAction("ServiceSchema","Service");}
                         </div><!-- /.flat-scheme -->
                     </div><!-- /.row -->
 
@@ -78,13 +78,7 @@
                 <div class="services-sidebar">
                     <div class="widget widget_text style1">
                         <div class="textwidget">
-                            <p><strong>66 Nicholson St Buffalo New York</strong></p>
-                            <p>
-                                <strong>Tel: </strong>0123 456 789<br>
-                                <strong>Mobile: </strong>01-888-666-999<br>
-                                <strong>Mail: </strong><a href="#">info@linethemes.com</a><br>
-                                <strong>Mon - Sat:</strong> 8:00 Am - 18:00 Pm
-                            </p>
+                            @{ Html.RenderAction("CompanyInfoFooter", "Settings"); }
                         </div>
                     </div><!-- /.widget_text -->
 

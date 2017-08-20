@@ -1,0 +1,19 @@
+﻿@model IEnumerable<HoangGia.Web.ViewModels.PostViewModel>
+<ul>
+    @foreach (var p in Model)
+    {
+        <li>
+            <a href="@Url.Action("Details", "Posts", new { id = p.Id })">@p.Name</a>
+            <span class="post-date">
+                @if (p.CreatedDate != null)
+                {
+                    @p.CreatedDate.Value.ToShortDateString()
+                }
+                else
+                {
+                    @p.CreatedDate
+                }</span>
+        </li>
+    }
+
+</ul>

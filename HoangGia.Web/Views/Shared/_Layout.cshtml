@@ -8,7 +8,7 @@
     <!-- Basic Page Needs -->
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-    <title>@ViewBag.Title  &middot; Hoàng Gia Architecture & Construction</title>
+    <title>@ViewBag.Title &middot; Hoàng Gia Architecture & Construction</title>
 
     <meta name="author" content="themesflat.com developed by Thâm Davies">
     <meta name="keyword" content="@ViewBag.MetaKeyword Nội thất, ngoại thất Hoàng Gia" />
@@ -17,7 +17,7 @@
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <!-- Bootstrap  -->
+    <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="/Resources/stylesheets/bootstrap.css">
 
     <!-- Theme Style -->
@@ -32,7 +32,7 @@
     <!-- Animation Style -->
     <link rel="stylesheet" type="text/css" href="/Resources/stylesheets/animate.css">
 
-    <!-- Favicon and touch icons  -->
+    <!-- Favicon and touch icons -->
     <link href="/Resources/images/icon/favicon.png" rel="apple-touch-icon-precomposed" sizes="48x48">
     <link href="/Resources/images/icon/favicon.png" rel="apple-touch-icon-precomposed">
     <link href="/Resources/images/icon/favicon.png" rel="shortcut icon">
@@ -44,245 +44,197 @@
 </head>
 
 <body class="header-sticky">
-<section class="loading-overlay">
-    <div class="Loading-Page">
-        <h2 class="loader">Loading...</h2>
-    </div>
-</section>
+    <section class="loading-overlay">
+        <div class="Loading-Page">
+            <h2 class="loader">Loading...</h2>
+        </div>
+    </section>
 
-<!-- Boxed -->
-<div class="boxed">
-<div class="top">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="flat-address">
-                    <ul>
-                        <li class="address"><span>66 Trường Chinh, Q.Liên Chiểu, TP.Đà Nẵng</span></li>
-                    </ul>
-                </div>
-                <!-- /.flat-address -->
-            </div>
-            <!-- /.col-md-6 -->
-            <div class="col-md-6">
-                <div class="top-navigator">
-                    <ul>
-                        <li class="service"><a href="#">Language</a>
+    <!-- Boxed -->
+    <div class="boxed">
+        <div class="top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="flat-address">
+                            @{ Html.RenderAction("Address", "Settings"); }
+                        </div>
+                        <!-- /.flat-address -->
+                    </div>
+                    <!-- /.col-md-6 -->
+                    <div class="col-md-6">
+                        <div class="top-navigator">
                             <ul>
-                                <li>
-                                    <a href="javascript:void();"> <img class="lang-flag" src="/Resources/images/icon/um.svg" alt="en flag">English</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void();"><img class="lang-flag" src="/Resources/images/icon/vn.svg" alt="en flag"> Vietnamese</a>
+                                <li class="service">
+                                    <a href="#">Language</a>
+                                    <ul>
+                                        <li>
+                                            <a href="javascript:void();"> <img class="lang-flag" src="/Resources/images/icon/um.svg" alt="en flag">English</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void();"><img class="lang-flag" src="/Resources/images/icon/vn.svg" alt="en flag"> Vietnamese</a>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
-                        </li>
-                    </ul>
+                        </div>
+                        <!-- /.top-navigator -->
+                    </div>
+                    <!-- /.col-md-6 -->
                 </div>
-                <!-- /.top-navigator -->
+                <!-- /.row -->
             </div>
-            <!-- /.col-md-6 -->
+            <!-- /.container -->
         </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.container -->
-</div>
-<!-- /.top -->
+        <!-- /.top -->
 
-<div class="site-brand">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div id="logo" class="logo">
-                    <a href="/" rel="home">
-                        <img src="/Resources/images/logo.png" alt="image">
-                    </a>
-                </div>
-                <!-- /.logo -->
-                <div class="header-widgets">
-                    <div id="text-1" class="widget widget_text">
-                        <div class="textwidget">
-                            <div class="info-icon">
-                                <i class="icon-call-out icons"></i>
-                                <div class="content">Gọi ngay
-                                    <br>
-                                    <span>1-888-345-6789</span></div>
+        <div class="site-brand">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="logo" class="logo">
+                            <a href="/" rel="home">
+                                <img src="/Resources/images/logo.png" alt="image">
+                            </a>
+                        </div>
+                        <!-- /.logo -->
+                        <div class="header-widgets">
+                            @{ Html.RenderAction("CompanyInfoTop", "Settings"); }
+                            <div id="text-3" class="widget widget_text">
+                                <div class="textwidget">
+                                    <div class="social-links">
+                                        <a href="#">
+                                            <i class="fa fa-twitter"></i>
+                                        </a>
+                                        <a href="#">
+                                            <i class="fa fa-facebook"></i>
+                                        </a>
+                                        <a href="#">
+                                            <i class="fa fa-behance"></i>
+                                        </a>
+                                        <a href="#">
+                                            <i class="fa fa-dribbble"></i>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <!-- /.header-widget -->
                     </div>
-                    <div id="text-2" class="widget widget_text">
-                        <div class="textwidget">
-                            <div class="info-icon">
-                                <i class="icon-clock icons"></i>
-                                <div class="content"> Giờ mở cửa
-                                    <br>
-                                    <span>Thứ 2 - Thứ 6: 7.00 - 18:00</span></div>
+                    <!-- /.col-md-12 -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container -->
+        </div>
+        <!-- /.site-brand -->
+        <!-- Header -->
+        @{ Html.RenderAction("Menu", "Home"); }
+        <!-- /.header -->
+
+        @RenderBody()
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-widgets">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="widget widget_text">
+                                <h3 class="widget-title">Về chúng tôi</h3>
+                                <div class="textwidget">
+                                    @{Html.RenderAction("ServiceDescription", "Settings");}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div id="text-3" class="widget widget_text">
-                        <div class="textwidget">
-                            <div class="social-links">
-                                <a href="#">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fa fa-behance"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fa fa-dribbble"></i>
-                                </a>
+                        <!-- /.col-md-3 -->
+
+                        <div class="col-md-6">
+                            <div class="widget widget_recent_entries">
+                                <h3 class="widget-title">Tin mới</h3>
+                                @{Html.RenderAction("NewPosts", "Footer");}
                             </div>
+                            <!-- /.widget_recent_entries -->
                         </div>
+                        <!-- /.col-md-3 -->
+
+                        <div class="col-md-3">
+                            <div class="widget widget_text">
+                                <h3 class="widget-title">Thông tin liên hệ</h3>
+                                <div class="textwidget">
+                                    @{Html.RenderAction("CompanyInfoFooter", "Settings");}
+                                    </
+
+                                    div>
+                                </div>
+                                <!-- /.widget_text -->
+                            </div>
+                            <!-- /.col-md-3 -->
+                        </div>
+                        <!-- /.row -->
                     </div>
+                    <!-- /.container -->
                 </div>
-                <!-- /.header-widget -->
-            </div>
-            <!-- /.col-md-12 -->
-        </div>
-        <!-- /.row -->
+                <!-- /.footer-widgets -->
+
+                <div class="footer-content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="social-links">
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-behance"></i></a>
+                                    <a href="#"><i class="fa fa-dribbble"></i></a>
+                                </div>
+
+                                <div class="copyright">
+                                    <div class="copyright-content">
+                                        Copyright © 2017 Hoang Gia.
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.col-md-12 -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.container -->
+                </div>
+                <!-- /.footer-content -->
+        </footer>
+
+        <!-- Go Top -->
+        <a class="go-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+
     </div>
-    <!-- /.container -->
-</div>
-<!-- /.site-brand -->
 
-<!-- Header -->
-    @{ Html.RenderAction("Menu", "Home"); }
-<!-- /.header -->
+    <!-- Javascript -->
+    <script type="text/javascript" src="/Resources/javascript/jquery.min.js"></script>
+    <script type="text/javascript" src="/Resources/javascript/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/Resources/javascript/jquery.easing.js"></script>
+    <script type="text/javascript" src="/Resources/javascript/imagesloaded.min.js"></script>
+    <script type="text/javascript" src="/Resources/javascript/jquery.isotope.min.js"></script>
+    <script type="text/javascript" src="/Resources/javascript/owl.carousel.js"></script>
+    <script type="text/javascript" src="/Resources/javascript/jquery-countTo.js"></script>
+    <script type="text/javascript" src="/Resources/javascript/jquery-waypoints.js"></script>
+    <script type="text/javascript" src="/Resources/javascript/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" src="/Resources/javascript/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/Resources/javascript/jquery-validate.js"></script>
+    <script type="text/javascript" src="/Resources/javascript/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="/Resources/javascript/parallax.js"></script>
+    <script type="text/javascript" src="/Resources/javascript/jquery.countdown.js"></script>
+    <script type="text/javascript" src="/Resources/javascript/switcher.js"></script>
+    <script type="text/javascript" src="/Resources/javascript/jquery.sticky.js"></script>
+    <script type="text/javascript" src="/Resources/javascript/smoothscroll.js"></script>
+    <script type="text/javascript" src="/Resources/javascript/main.js"></script>
 
-@RenderBody()
-
-<!-- Footer -->
-<footer class="footer">
-    <div class="footer-widgets">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="widget widget_text">
-                        <h3 class="widget-title">Về chúng tôi</h3>
-                        <div class="textwidget">
-                            <p>Hoàng Gia chúng tôi chuyên thiết kế và thi công nội & ngoại thất uy tín, chất lượng</p>
-
-                        </div>
-                    </div>
-                </div>
-                <!-- /.col-md-3 -->
-
-                <div class="col-md-3">
-                    <div class="widget widget_nav_menu">
-                        <h3 class="widget-title">Dịch vụ</h3>
-                        <div class="menu-services-container">
-                            <ul class="menu">
-                                <li class="menu-item"><a href="#">Nội thất</a></li>
-                                <li class="menu-item"><a href="#">Ngoại thất</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- /.widget_nav_menu -->
-                </div>
-                <!-- /.col-md-3 -->
-
-                <div class="col-md-3">
-                    <div class="widget widget_recent_entries">
-                        <h3 class="widget-title">Tin mới</h3>
-                        <ul>
-                            <li>
-                                <a href="#">Paris guide launch event</a>
-                                <span class="post-date">December 18, 2015</span>
-                            </li>
-                            <li>
-                                <a href="#">The calibre of the art hints at the creative</a>
-                                <span class="post-date">December 18, 2015</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- /.widget_recent_entries -->
-                </div>
-                <!-- /.col-md-3 -->
-
-                <div class="col-md-3">
-                    <div class="widget widget_text">
-                        <h3 class="widget-title">Thông tin liên hệ</h3>
-                        <div class="textwidget">
-                            <p><strong><i class="fa fa-map-marker"></i> 66 Trường Chinh, Q.Liên Chiểu, TP.Đà Nẵng</strong></p>
-                            <p>
-                                <strong><i class="fa fa-phone-square"></i> </strong>0123 456 789<br>
-                                <strong><i class="fa fa-mobile"></i> </strong>01-888-666-999<br>
-                                <strong><i class="fa fa-envelope"></i> </strong><a href="#">support@hoanggia.com</a><br>
-                                <strong><i class="fa fa-clock-o"></i> </strong> 8:00 Am - 18:00 Pm
-                            </p>
-                        </div>
-                    </div>
-                    <!-- /.widget_text -->
-                </div>
-                <!-- /.col-md-3 -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container -->
-    </div>
-    <!-- /.footer-widgets -->
-
-    <div class="footer-content">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="social-links">
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-behance"></i></a>
-                        <a href="#"><i class="fa fa-dribbble"></i></a>
-                    </div>
-
-                    <div class="copyright">
-                        <div class="copyright-content">
-                            Copyright © 2017 Hoang Gia. </div>
-                    </div>
-                </div>
-                <!-- /.col-md-12 -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container -->
-    </div>
-    <!-- /.footer-content -->
-</footer>
-
-<!-- Go Top -->
-<a class="go-top">
-    <i class="fa fa-chevron-up"></i>
-</a>
-
-</div>
-
-<!-- Javascript -->
-<script type="text/javascript" src="/Resources/javascript/jquery.min.js"></script>
-<script type="text/javascript" src="/Resources/javascript/bootstrap.min.js"></script>
-<script type="text/javascript" src="/Resources/javascript/jquery.easing.js"></script>
-<script type="text/javascript" src="/Resources/javascript/imagesloaded.min.js"></script>
-<script type="text/javascript" src="/Resources/javascript/jquery.isotope.min.js"></script>
-<script type="text/javascript" src="/Resources/javascript/owl.carousel.js"></script>
-<script type="text/javascript" src="/Resources/javascript/jquery-countTo.js"></script>
-<script type="text/javascript" src="/Resources/javascript/jquery-waypoints.js"></script>
-<script type="text/javascript" src="/Resources/javascript/jquery.flexslider-min.js"></script>
-<script type="text/javascript" src="/Resources/javascript/jquery.cookie.js"></script>
-<script type="text/javascript" src="/Resources/javascript/jquery-validate.js"></script>
-<script type="text/javascript" src="/Resources/javascript/jquery.magnific-popup.min.js"></script>
-<script type="text/javascript" src="/Resources/javascript/parallax.js"></script>
-<script type="text/javascript" src="/Resources/javascript/jquery.countdown.js"></script>
-<script type="text/javascript" src="/Resources/javascript/switcher.js"></script>
-<script type="text/javascript" src="/Resources/javascript/jquery.sticky.js"></script>
-<script type="text/javascript" src="/Resources/javascript/smoothscroll.js"></script>
-<script type="text/javascript" src="/Resources/javascript/main.js"></script>
-
-<!-- Revolution Slider -->
-<script type="text/javascript" src="/Resources/javascript/jquery.themepunch.tools.min.js"></script>
-<script type="text/javascript" src="/Resources/javascript/jquery.themepunch.revolution.min.js"></script>
-<script type="text/javascript" src="/Resources/javascript/slider.js"></script>
-@RenderSection("scripts", required:false)
+    <!-- Revolution Slider -->
+    <script type="text/javascript" src="/Resources/javascript/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="/Resources/javascript/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript" src="/Resources/javascript/slider.js"></script>
+    @RenderSection("scripts", required: false)
 </body>
 
 </html>
