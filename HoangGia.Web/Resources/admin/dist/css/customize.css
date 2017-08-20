@@ -126,3 +126,17 @@
     border-top-color: transparent;
 }
 #lblAdd{ cursor: pointer;}
+
+.web-info {
+    line-height: 30px;
+    font-size: 18px;
+}
+
+.modal-dialog {
+    overflow-y: initial !important
+}
+
+.modal-body {
+    height: 450px;
+    overflow-y: auto;
+}

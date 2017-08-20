@@ -90,6 +90,7 @@
     <Compile Include="Repositories\ProjectImageRepository.cs" />
     <Compile Include="Repositories\ProjectRepository.cs" />
     <Compile Include="Repositories\ServiceRepository.cs" />
+    <Compile Include="Repositories\SettingRepository.cs" />
     <Compile Include="Repositories\TagRepository.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,33 @@
+﻿@model HoangGia.Web.ViewModels.SettingViewModel
+
+<!-- Default box -->
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Thông tin trang web &nbsp;<button id="web-info-edit" data-id="@Model.Id" class="btn btn-info"><i data-id="@Model.Id" class="fa fa-pencil-square-o"></i> Chỉnh sửa</button></h3>
+
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+    </div>
+    <div class="box-body">
+        <ul class="web-info">
+            <li><strong>Tên trang web: </strong>&nbsp; @Model.Name</li>
+            <li> <strong>Tiêu đề trang: </strong>&nbsp; @Model.PageTitle</li>
+            <li><strong>Đường dẫn: </strong>&nbsp; @Model.Url</li>
+            <li><strong>Điện thoại: </strong>&nbsp; @Model.Tel</li>
+            <li><strong>Ngày làm việc: </strong>&nbsp; @Model.WorkingDay</li>
+            <li><strong>Địa chỉ: </strong>&nbsp; @Model.CompanyAddress</li>
+            <li><strong>Tọa độ(theo Google Map): </strong>&nbsp; @Model.Long, @Model.Lat</li>
+        </ul>
+    </div>
+    <!-- /.box-body -->
+
+</div>
+<!-- /.box -->
+
+@Html.Partial("_WebModalPartial")

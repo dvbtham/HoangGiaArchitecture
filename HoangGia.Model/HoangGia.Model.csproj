@@ -73,6 +73,7 @@
     <Compile Include="Entities\Setting.cs" />
     <Compile Include="Entities\Tag.cs" />
     <Compile Include="Enums\ProjectStatus.cs" />
+    <Compile Include="Enums\SettingValue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

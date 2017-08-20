@@ -1,0 +1,19 @@
+﻿@model HoangGia.Web.ViewModels.SettingViewModel
+@{
+    ViewBag.AdminTitle = "Thông tin và cài đặt";
+    Layout = "~/Areas/AdminHg/Views/Shared/_Layout.cshtml";
+}
+<section class="content">
+
+    @{Html.RenderAction("WebSetting", "Setting");}
+
+    @{Html.RenderAction("MailSetting", "Setting");}
+
+    @{Html.RenderAction("ServiceSetting", "Setting");}
+
+</section>
+<!-- /.content -->
+
+@section scripts{
+    <script src="~/Resources/admin/dist/js/settingController.js"></script>
+}

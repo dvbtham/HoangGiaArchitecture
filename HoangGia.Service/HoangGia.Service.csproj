@@ -51,6 +51,7 @@
     <Compile Include="Services\ProjectImageService.cs" />
     <Compile Include="Services\ProjectService.cs" />
     <Compile Include="Services\ServService.cs" />
+    <Compile Include="Services\SettingService.cs" />
     <Compile Include="Services\TagService.cs" />
   </ItemGroup>
   <ItemGroup>

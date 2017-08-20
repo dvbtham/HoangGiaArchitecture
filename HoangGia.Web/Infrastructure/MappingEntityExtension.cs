@@ -7,6 +7,30 @@ namespace HoangGia.Web.Infrastructure
 {
     public static class MappingEntityExtension
     {
+        public static void SettingMapper(this Setting setting, SettingViewModel viewModel)
+        {
+            setting.Id = viewModel.Id;
+            setting.Name = viewModel.Name;
+            setting.Url = viewModel.Url;
+            setting.PageTitle = viewModel.PageTitle;
+            setting.MetaDesc = viewModel.MetaDesc;
+            setting.AdminEmailAddress = viewModel.AdminEmailAddress;
+            setting.NotificationReplyEmail = viewModel.NotificationReplyEmail;
+            setting.ServiceScheme = viewModel.ServiceScheme;
+            setting.ServiceDescription = viewModel.ServiceDescription;
+            setting.WhyChooseUsTitles = viewModel.WhyChooseUsTitles;
+            setting.Smtp = viewModel.Smtp;
+            setting.SmtpEnableSsl = viewModel.SmtpEnableSsl;
+            setting.SmtpPassword = viewModel.SmtpPassword;
+            setting.SmtpPort = viewModel.SmtpPort;
+            setting.SmtpUsername = viewModel.SmtpUsername;
+            setting.Tel = viewModel.Tel;
+            setting.WorkingDay = viewModel.WorkingDay;
+            setting.CompanyAddress = viewModel.CompanyAddress;
+            setting.Long = viewModel.Long;
+            setting.Lat = viewModel.Lat;
+        }
+
         public static void MenuMapper(this Menu menu, MenuViewModel viewModel)
         {
             menu.Name = viewModel.Name;

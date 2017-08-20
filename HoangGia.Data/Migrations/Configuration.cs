@@ -11,7 +11,7 @@ namespace HoangGia.Data.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<HoangGia.Data.HoangGiaDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<HoangGiaDbContext>
     {
         public Configuration()
         {
@@ -65,13 +65,13 @@ namespace HoangGia.Data.Migrations
             {
                 var menus = new List<Menu>
                 {
-                    new Menu{ Name = "Dịch vụ", ActionName = "Index", ControllerName = "Services", Order = 1, IsActived = true },
-                    new Menu{ Name = "Giới thiệu", ActionName = "Index", ControllerName = "Services", Order = 2, IsActived = true },
-                    new Menu{ Name = "Dự án hoàn thành", ActionName = "Index", ControllerName = "Projects",  Order = 3,  IsActived = true },
-                    new Menu{ Name = "Cẩm nang", ActionName = "Index", ControllerName = "Blog", Order = 4, IsActived = true },
+                    new Menu{ Name = "Dịch vụ", ActionName = "Index", ControllerName = "Service", Order = 1, IsActived = true },
+                    new Menu{ Name = "Giới thiệu", ActionName = "Index", ControllerName = "About", Order = 2, IsActived = true },
+                    new Menu{ Name = "Dự án hoàn thành", ActionName = "Index", ControllerName = "Project",  Order = 3,  IsActived = true },
+                    new Menu{ Name = "Cẩm nang", ActionName = "Index", ControllerName = "Posts", Order = 4, IsActived = true },
                     new Menu{ Name = "Liên hệ", ActionName = "Index", ControllerName = "Contact", Order = 5, IsActived = true },
-                    new Menu{ Name = "Nội thất", ActionName = "Index", ParentId = 1, ControllerName = "Contact", Order = 1, IsActived = true },
-                    new Menu{ Name = "Ngoại thất", ActionName = "Index", ParentId = 1, ControllerName = "Contact", Order = 1, IsActived = true },
+                    new Menu{ Name = "Nội thất", ActionName = "Index", ParentId = 1, ControllerName = "Service", Order = 1, IsActived = true },
+                    new Menu{ Name = "Ngoại thất", ActionName = "Index", ParentId = 1, ControllerName = "Service", Order = 1, IsActived = true },
                 };
                 context.Menus.AddRange(menus);
                 context.SaveChanges();

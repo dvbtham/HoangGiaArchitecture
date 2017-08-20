@@ -1,0 +1,26 @@
+﻿@model HoangGia.Web.ViewModels.SettingViewModel
+<!-- Default box -->
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Thông tin dịch vụ &nbsp;</h3>
+
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+    </div>
+    <div class="box-body">
+        <ul class="web-info">
+            <li><strong>Châm ngôn về dịch vụ: </strong>&nbsp; @Model.ServiceScheme</li>
+            <li> <strong>Mô tả tổng quan dịch vụ: </strong>&nbsp; @Model.ServiceDescription</li>
+            <li><strong>Tại sao chọn chúng tôi: </strong>&nbsp; @Model.WhyChooseUsTitles</li>
+        </ul>
+    </div>
+    <!-- /.box-body -->
+
+</div>
+<!-- /.box -->

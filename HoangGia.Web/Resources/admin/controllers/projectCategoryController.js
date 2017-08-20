@@ -157,10 +157,13 @@ function Delete(id) {
 //Function for clearing the textboxes  
 function clearTextBox() {
     $('#Name').val("");
-    myKeyUp();
 }
-function myKeyUp() {
-    $('#Name').css('border-color', 'lightgrey');
+function rightState() {
+    $('#Name').bind('keyup',
+        function () {
+            $('#Name').css('border-color', '#d2d6de');
+
+        });
 }
 //Valdidation using jquery  
 function validate() {
