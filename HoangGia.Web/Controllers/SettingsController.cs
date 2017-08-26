@@ -20,7 +20,7 @@ namespace HoangGia.Web.Controllers
         [OutputCache(Duration = 86400, VaryByParam = "none")]
         public PartialViewResult Address()
         {
-            var setting = _settingService.FindById((int)SettingValue.Default);
+            var setting = _settingService.FindById((int)SettingValue.User);
             var settingMapper = Mapper.Map<Setting, SettingViewModel>(setting);
             return PartialView("_AddressPartial", settingMapper);
         }
@@ -29,7 +29,7 @@ namespace HoangGia.Web.Controllers
         [OutputCache(Duration = 86400, VaryByParam = "none")]
         public PartialViewResult CompanyInfoTop()
         {
-            var setting = _settingService.FindById((int)SettingValue.Default);
+            var setting = _settingService.FindById((int)SettingValue.User);
             var settingMapper = Mapper.Map<Setting, SettingViewModel>(setting);
             return PartialView("_CompanyInfoPartial", settingMapper);
         }
@@ -38,7 +38,7 @@ namespace HoangGia.Web.Controllers
         [OutputCache(Duration = 86400, VaryByParam = "none")]
         public PartialViewResult CompanyInfoFooter()
         {
-            var setting = _settingService.FindById((int)SettingValue.Default);
+            var setting = _settingService.FindById((int)SettingValue.User);
             var settingMapper = Mapper.Map<Setting, SettingViewModel>(setting);
             return PartialView("_CompanyInfoFooterPartial", settingMapper);
         }
@@ -47,7 +47,7 @@ namespace HoangGia.Web.Controllers
         [OutputCache(Duration = 86400, VaryByParam = "none")]
         public PartialViewResult ServiceDescription()
         {
-            var setting = _settingService.FindById((int)SettingValue.Default);
+            var setting = _settingService.FindById((int)SettingValue.User);
             var settingMapper = Mapper.Map<Setting, SettingViewModel>(setting);
             return PartialView("_ServiceDescriptionPartial", settingMapper);
         }

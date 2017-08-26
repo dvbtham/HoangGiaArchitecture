@@ -1,0 +1,104 @@
+﻿@using HoangGia.Web.Infrastructure
+@model IEnumerable<HoangGia.Web.ViewModels.SlideViewModel>
+@{
+    ViewBag.AdminTitle = "Danh sách slides";
+    Layout = "~/Areas/AdminHg/Views/Shared/_Layout.cshtml";
+}
+<section class="content">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">@ViewBag.AdminTitle</h3>
+            <!-- Trigger the modal with a button -->
+            <a href="@Url.Action("Create","Slides", new {area = "AdminHg"})" class="btn btn-info btn-sm margin-left-8">
+                Thêm slide
+            </a>
+            
+        </div><!-- /.box-header -->
+        <div class="box-body table-responsive">
+            <table id="myTable" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Đường dẫn</th>
+                    <th>Hình ảnh</th>
+                    <th>Trạng thái</th>
+                    <th>Thao tác</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var slide in Model)
+                {
+                    <tr>
+                        <td>@slide.Id</td>
+                        <td>
+                            <a href="@Url.Action("Edit", "Slides", new { id = slide.Id})">
+                                @slide.Url
+                            </a>
+                        </td>
+                        <td>
+                            <img src="@slide.Image" class="img-responsive" style="max-width: 100px" alt="@slide.Image" />
+                        </td>
+                        <td>@Html.LabelActived(slide.IsActived)</td>
+                        <td>
+                            <a href="@Url.Action("Edit", "Slides", new { id = slide.Id})">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                            <a href="javascript:void(0);">
+                                <i  data-id="@slide.Id" class="fa fa-trash margin-left-8 btn-delete-slide"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+</section>
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+
+            $("input[type='search']").attr('placeholder', 'Nhập tên slide để tìm...');
+            $('.btn-delete-slide').click(function (e) {
+                e.preventDefault();
+                var link = $(e.target);
+                bootbox.dialog({
+                    message: "Bạn chắc chắn muốn slide này?",
+                    title: "Xác nhận xóa",
+                    buttons: {
+                        no: {
+                            label: "Hủy",
+                            className: "btn-default",
+                            callback: function () {
+                                bootbox.hideAll();
+                            }
+                        },
+                        yes: {
+                            label: "Xóa ",
+                            className: "btn-danger",
+                            callback: function () {
+                                $.ajax({
+                                    url: "/AdminHg/Slides/Delete/" + link.attr('data-id'),
+                                    method: "post",
+                                    success: function () {
+                                        link.parents("tr").fadeOut(function () {
+                                            $(this).remove();
+                                        });
+                                    },
+                                    error: function () {
+                                        bootbox.alert("Lỗi xảy ra. Vui lòng liên hệ với bộ phận dev.");
+                                    }
+                                });
+                            }
+                        }
+                    }
+                });
+            });
+
+        });
+    </script>
+}

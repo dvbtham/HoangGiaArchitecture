@@ -46,7 +46,7 @@ namespace HoangGia.Web.Controllers
         [OutputCache(Duration = 84600, VaryByParam = "none")]
         public PartialViewResult ServiceSchema()
         {
-            var setting = _settingService.FindById((int)SettingValue.Default);
+            var setting = _settingService.FindById((int)SettingValue.User);
             var settingMapper = Mapper.Map<Setting, SettingViewModel>(setting);
             return PartialView("_ServiceSchemaPartial", settingMapper);
         }

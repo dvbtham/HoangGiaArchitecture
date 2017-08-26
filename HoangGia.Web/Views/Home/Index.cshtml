@@ -1,7 +1,8 @@
 ﻿@{
     ViewBag.Title = "Trang chủ";
 }
-@Html.Partial("_SliderPartial")
+
+@{ Html.RenderAction("Slides","Home"); }
 <!-- Services-->
 @{ Html.RenderAction("Services", "Home"); }
 
@@ -74,7 +75,7 @@
     <!-- /.container -->
 </section>
 
-<!-- Flat clients -->
+@*<!-- Flat clients -->
 <section class="flat-row pad-top0px pad-bottom0px">
     <div class="container">
         <div class="row">
@@ -166,7 +167,7 @@
         <!-- /.row -->
     </div>
     <!-- /.container -->
-</section>
+</section>*@
 
 <section class="flat-row pad-bottom100px">
     <div class="container">
@@ -177,7 +178,7 @@
                         <div class="col-md-4">
                             <div class="counter">
                                 <div class="counter-image"><i class="fa icons icon-layers"></i></div>
-                                <div class="numb-count" data-to="332013" data-speed="3000" data-waypoint-active="yes">332013</div>
+                                <div class="numb-count" data-to="100" data-speed="3000" data-waypoint-active="yes">100</div>
                                 <div class="counter-title">
                                     <strong>Dự án</strong> hoàn thành đúng thời hạn và mức độ hài lòng cao.
                                 </div>
@@ -187,7 +188,7 @@
                         <div class="col-md-4">
                             <div class="counter">
                                 <div class="counter-image"><i class="fa icons icon-clock"></i></div>
-                                <div class="numb-count" data-to="7121988" data-speed="3000" data-waypoint-active="yes">7121988</div>
+                                <div class="numb-count">24/7</div>
                                 <div class="counter-title">
                                     <strong>Làm việc</strong> với sự nhiệt huyết và say mê để cung cấp dịch vụ tốt nhất.
                                 </div>
@@ -197,7 +198,7 @@
                         <div class="col-md-4">
                             <div class="counter">
                                 <div class="counter-image"><i class="fa icons icon-people"></i></div>
-                                <div class="numb-count" data-to="6101990" data-speed="3000" data-waypoint-active="yes">6101990</div>
+                                <div class="numb-count" data-to="100" data-speed="3000" data-waypoint-active="yes">100</div>
                                 <div class="counter-title">
                                     <strong>Khách hàng</strong> bao gồm trong và ngoài nước.
                                 </div>

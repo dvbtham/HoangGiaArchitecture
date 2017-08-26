@@ -9,8 +9,8 @@ foreach (var menu in Model.Where(a => a.ParentId == parentId))
     var submenu = Model.Count(a => a.ParentId == menu.Id);
 
         <li class="@(submenu > 0 ? "has-children" : "")">
-           @Html.MenuLink(menu.Name, menu.ActionName, menu.ControllerName, "active")
-           @if (submenu > 0)
+            @Html.MenuLink(menu.Name, menu.ActionName, menu.ControllerName, "active")
+            @if (submenu > 0)
             {
                 <ul class="submenu">
                     @GetSubMenus(siteMenu, menu.Id)
@@ -52,10 +52,11 @@ foreach (var menu in Model.Where(a => a.ParentId == parentId))
                                         <a href="javascript:void(0);" class="flat-search"><i class="icon-magnifier icons"></i></a>
                                         <div class="submenu top-search">
                                             <div class="widget widget_search">
-                                                <form class="search-form">
-                                                    <input type="search" class="search-field" placeholder="Tìm bài viết …">
+                                                @using (Html.BeginForm("Index", "Posts", FormMethod.Get, new { @class = "search-form" }))
+                                                {
+                                                    <input type="search" name="q" value="@ViewBag.q" class="search-field" placeholder="Tìm bài viết, cẩm nang …">
                                                     <input type="submit" class="search-submit">
-                                                </form>
+                                                }
                                             </div>
                                         </div>
                                     </li>

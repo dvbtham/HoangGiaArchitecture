@@ -71,6 +71,7 @@
     <Compile Include="Entities\Follower.cs" />
     <Compile Include="Entities\Service.cs" />
     <Compile Include="Entities\Setting.cs" />
+    <Compile Include="Entities\Slide.cs" />
     <Compile Include="Entities\Tag.cs" />
     <Compile Include="Enums\ProjectStatus.cs" />
     <Compile Include="Enums\SettingValue.cs" />

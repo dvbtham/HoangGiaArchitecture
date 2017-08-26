@@ -53,7 +53,7 @@
                                         <span><a href="javasctipt:void();">@item.CreatedBy</a></span>
                                         <span>trong mục</span>
                                         <span><strong>@item.PostCategory.Name </strong></span>
-                                    <span class="comments-link"><i class="fa fa-eye"></i>&nbsp;@item.ViewCount</span>
+                                        <span class="comments-link"><i class="fa fa-eye"></i>&nbsp;@item.ViewCount</span>
                                     </div>
 
                                 </div><!-- /.content-post -->
@@ -68,21 +68,18 @@
                     <div class="sidebars-wrap">
                         <div class="sidebar">
                             <div class="widget widget_search">
-                                <form class="search-form">
-                                    @using (Html.BeginForm("Index", "Posts", FormMethod.Get, new { @class = "search-form" }))
-                                    {
-                                        <input type="search" name="q" value="@ViewBag.q" class="search-field" placeholder="Nhập từ khóa và enter …">
-                                        <input type="submit" class="search-submit">
-                                    }
-
-                                </form>
+                                @using (Html.BeginForm("Index", "Posts", FormMethod.Get, new { @class = "search-form" }))
+                                {
+                                    <input type="search" name="q" value="@ViewBag.q" class="search-field" placeholder="Nhập từ khóa và enter …">
+                                    <input type="submit" class="search-submit">
+                                }
                             </div><!-- /.widget_search -->
-                        
+
                             @{Html.RenderAction("Categories", "Posts");}
 
                             @{Html.RenderAction("PopularPost", "Posts");}
 
-                            @{Html.RenderAction("TagsWidget","Posts");}
+                            @{Html.RenderAction("TagsWidget", "Posts");}
                         </div><!-- .sidebar -->
                     </div><!-- /.sidebars-wrap -->
                 </div><!-- /.sidebars -->

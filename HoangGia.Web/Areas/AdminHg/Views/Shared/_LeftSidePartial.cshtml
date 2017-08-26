@@ -26,7 +26,7 @@
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
-            <li class="header">MAIN NAVIGATION</li>
+            <li class="header">Danh mục chính</li>
             <li class="treeview">
                 <a href="@Url.Action("Index","Dashboard", new { area = "AdminHg"})">
                     <i class="fa fa-home"></i> <span>Trang chủ</span>
@@ -42,6 +42,9 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="@Url.Action("Index","Menu", new { area = "AdminHg"})"><i class="fa fa-th"></i> Quản lý Menu</a></li>
+                </ul>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("Index","Slides", new { area = "AdminHg"})"><i class="fa fa-sliders"></i> Quản lý Slide</a></li>
                 </ul>
                 <ul class="treeview-menu">
                     <li><a href="@Url.Action("Index","Setting", new { area = "AdminHg"})"><i class="fa fa-cogs"></i> Thông tin và cài đặt</a></li>

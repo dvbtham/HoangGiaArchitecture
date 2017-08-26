@@ -16,16 +16,18 @@ namespace HoangGia.Web.Controllers
         private readonly IProjectService _projectService;
         private readonly IProjectCategoryService _projectCategoryService;
         private readonly IPostService _postService;
+        private readonly ISlideService _slideService;
 
         public HomeController(IMenuService menuService, IServService serveService,
             IProjectService projectService, IProjectCategoryService projectCategoryService,
-            IPostService postService)
+            IPostService postService, ISlideService slideService)
         {
             _menuService = menuService;
             _serveService = serveService;
             _projectService = projectService;
             _projectCategoryService = projectCategoryService;
             _postService = postService;
+            _slideService = slideService;
         }
 
         public ActionResult Index()
@@ -67,6 +69,14 @@ namespace HoangGia.Web.Controllers
             var posts = _postService.GetAll().OrderByDescending(x => x.CreatedDate).Take(4);
             var postsMapper = Mapper.Map<IEnumerable<Post>, IEnumerable<PostViewModel>>(posts);
             return PartialView("_PostListPartial", postsMapper);
+        }
+
+        [ChildActionOnly]
+        public PartialViewResult Slides()
+        {
+            var slides = _slideService.GetAll().Where(x => x.IsActived);
+            var slidesMapper = Mapper.Map<IEnumerable<Slide>, IEnumerable<SlideViewModel>>(slides);
+            return PartialView("_SliderPartial", slidesMapper);
         }
 
         [ChildActionOnly]

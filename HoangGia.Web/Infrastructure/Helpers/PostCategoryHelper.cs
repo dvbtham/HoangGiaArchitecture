@@ -11,13 +11,13 @@ namespace HoangGia.Web.Infrastructure.Helpers
     {
         public static IEnumerable<SelectListItem> GetCategoryList(IPostCategoryService postCategoryService)
         {
-            var categories = GetAllCategories(postCategoryService.GetAll().OrderBy(x => x.DisplayOrder));
-            
+            var categories = GetAllCategories(postCategoryService.GetAll().Where(x => x.IsDeleted == false).OrderBy(x => x.DisplayOrder));
+
             return categories.Select(item => new SelectListItem
-                {
-                    Text = item.Text,
-                    Value = item.Value
-                }).ToList();
+            {
+                Text = item.Text,
+                Value = item.Value
+            }).ToList();
         }
 
         private static IEnumerable<SelectListItem> GetAllCategories(IEnumerable<PostCategory> postCategories)
@@ -67,8 +67,8 @@ namespace HoangGia.Web.Infrastructure.Helpers
                 alreadyProcessedCategoryIds.Add(postCategory.Id);
 
                 postCategory = (from c in allCategories
-                    where c.Id == postCategory.ParentId
-                    select c).FirstOrDefault();
+                                where c.Id == postCategory.ParentId
+                                select c).FirstOrDefault();
             }
             result.Reverse();
             return result;

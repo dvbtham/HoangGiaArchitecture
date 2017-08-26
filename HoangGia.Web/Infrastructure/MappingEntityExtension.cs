@@ -108,6 +108,13 @@ namespace HoangGia.Web.Infrastructure
             projectImage.ProjectId = viewModel.ProjectId;
             projectImage.ImageUrl = viewModel.ImageUrl;
         }
+        public static void SlideMapper(this Slide slide, SlideViewModel viewModel)
+        {
+            slide.Id = viewModel.Id;
+            slide.Url = viewModel.Url;
+            slide.Image = viewModel.Image;
+            slide.IsActived = viewModel.IsActived;
+        }
         public static void ProjectMapper(this Project project, ProjectViewModel viewModel)
         {
             project.Id = viewModel.Id;

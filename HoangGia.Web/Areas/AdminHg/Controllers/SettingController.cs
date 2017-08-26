@@ -55,7 +55,7 @@ namespace HoangGia.Web.Areas.AdminHg.Controllers
         [NonAction]
         public SettingViewModel GetSetting()
         {
-            var setting = _settingService.FindById((int)SettingValue.Default);
+            var setting = _settingService.FindById((int)SettingValue.User);
             var settingMapper = Mapper.Map<Setting, SettingViewModel>(setting);
             return settingMapper;
         }
