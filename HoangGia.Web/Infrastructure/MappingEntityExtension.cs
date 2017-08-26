@@ -40,6 +40,16 @@ namespace HoangGia.Web.Infrastructure
             menu.ParentId = viewModel.ParentId;
             menu.Order = viewModel.Order;
         }
+
+        public static void ContactMapper(this Contact contact, ContactViewModel viewModel)
+        {
+            contact.Id = viewModel.Id;
+            contact.Name = viewModel.Name;
+            contact.Email = viewModel.Email;
+            contact.Message = viewModel.Message;
+            contact.Title = viewModel.Title;
+        }
+
         public static void ServiceMapper(this Model.Entities.Service service, ServiceViewModel viewModel)
         {
             service.Id = viewModel.Id;

@@ -60,6 +60,7 @@
     <Compile Include="Entities\ApplicationUser.cs" />
     <Compile Include="Entities\ApplicationUserGroup.cs" />
     <Compile Include="Entities\Consultant.cs" />
+    <Compile Include="Entities\Contact.cs" />
     <Compile Include="Entities\Error.cs" />
     <Compile Include="Entities\Menu.cs" />
     <Compile Include="Entities\Post.cs" />

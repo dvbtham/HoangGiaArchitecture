@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Liên hệ";
+}
+<div class="loading hide">Loading &#8230;</div>
+<!-- Page title -->
+<div class="page-title parallax parallax1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-title-heading">
+                    <h1 class="title">Liên hệ</h1>
+                    <div class="breadcrumbs">
+                        <ul>
+                            <li>Bạn đang ở đây:</li>
+                            <li><a href="/">Trang chủ</a></li>
+                            <li>Liên hệ</li>
+                        </ul>
+                    </div>
+                </div><!-- /.page-title-captions -->
+
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.page-title -->
+
+<section class="flat-row flat-contact pad-top0px">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="contact-sidebar-left">
+                    @{ Html.RenderAction("CompanyInfoFooter", "Settings"); }
+                </div>
+            </div><!-- /.col-md-4 -->
+
+            <div class="col-md-8">
+                <div class="contact-sidebar-right">
+                    <div id="flat-map"></div><!-- /#flat-map -->
+
+                    <div class="flat-divider d50px"></div>
+
+                    @Html.Partial("_QuickContactFormPartial")
+                </div><!-- /.contact-sidebar-right -->
+                <div class="flat-divider d50px"></div>
+            </div><!-- /.col-md-8 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section>
+
+@Html.Partial("_SubscribeFormPartial")
+    @section scripts{
+        <script>
+            function myMap() {
+                var myCenter = new google.maps.LatLng(16.0857245, 108.1768541);
+                var mapCanvas = document.getElementById("flat-map");
+                var mapOptions = { center: myCenter, zoom: 10 };
+                var map = new google.maps.Map(mapCanvas, mapOptions);
+                var marker = new google.maps.Marker({ position: myCenter });
+                marker.setMap(map);
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgHsQHZj0lvc9k8z32ZUgZ0tj47Ihd9rw&callback=myMap"></script>
+
+    }
+

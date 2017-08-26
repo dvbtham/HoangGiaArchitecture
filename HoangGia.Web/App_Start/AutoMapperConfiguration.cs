@@ -17,6 +17,7 @@ namespace HoangGia.Web
                 x.CreateMap<Post, PostViewModel>();
                 x.CreateMap<Slide, SlideViewModel>();
                 x.CreateMap<Setting, SettingViewModel>();
+                x.CreateMap<Contact, ContactViewModel>();
                 x.CreateMap<PostCategory, PostCategoryViewModel>();
                 x.CreateMap<ProjectImage, ProjectImageViewModel>();
                 x.CreateMap<ProjectCategory, ProjectCategoryViewModel>();

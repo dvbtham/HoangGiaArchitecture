@@ -229,6 +229,7 @@
     <Compile Include="Areas\AdminHg\Controllers\SlidesController.cs" />
     <Compile Include="Areas\AdminHg\Controllers\UserController.cs" />
     <Compile Include="Areas\AdminHg\ViewModels\ProjectAdminViewModel.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\FooterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
@@ -245,6 +246,7 @@
     <Compile Include="Infrastructure\MvcHtmlStringHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\ContactViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\PostCategoryViewModel.cs" />
@@ -4627,7 +4629,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -4814,6 +4815,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\AdminHg\Views\Slides\SlideForm.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_QuickContactFormPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Contact\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

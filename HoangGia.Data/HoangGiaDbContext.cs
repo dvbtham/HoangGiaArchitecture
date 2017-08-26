@@ -33,6 +33,7 @@ namespace HoangGia.Data
         public DbSet<Follower> Followers { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<Slide> Slides { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

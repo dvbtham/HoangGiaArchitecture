@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 using HoangGia.Data.Infrastructure;
 using HoangGia.Data.Repositories;
 using HoangGia.Model.Entities;
 using HoangGia.Services.Interfaces;
-using HoangGia.Utilities.Helpers;
 
 namespace HoangGia.Service.Services
 {
@@ -31,7 +33,7 @@ namespace HoangGia.Service.Services
                 var tags = post.Tags.Split(',');
                 foreach (var t in tags)
                 {
-                    var tagId = AliasHelper.Alias(t);
+                    var tagId = Alias(t);
 
                     if (_tagRepository.Count(x => x.Id == tagId) == 0)
                     {
@@ -116,6 +118,34 @@ namespace HoangGia.Service.Services
             var post = FindById(id);
             post.ViewCount += 1;
             SaveChanges();
+        }
+
+        private string Alias(string input)
+        {
+            if (string.IsNullOrEmpty(input)) return "";
+            input = input.Trim();
+            for (var i = 0x20; i < 0x30; i++)
+            {
+                input = input.Replace(((char)i).ToString(), " ");
+            }
+            input = input.Replace(".", "-");
+            input = input.Replace(" ", "-");
+            input = input.Replace(",", "-");
+            input = input.Replace(";", "-");
+            input = input.Replace(":", "-");
+            input = input.Replace("  ", "-");
+            var regex = new Regex(@"\p{IsCombiningDiacriticalMarks}+");
+            var str = input.Normalize(NormalizationForm.FormD);
+            var str2 = regex.Replace(str, string.Empty).Replace('đ', 'd').Replace('Đ', 'D');
+            while (str2.IndexOf("?", StringComparison.Ordinal) >= 0)
+            {
+                str2 = str2.Remove(str2.IndexOf("?", StringComparison.Ordinal), 1);
+            }
+            while (str2.Contains("--"))
+            {
+                str2 = str2.Replace("--", "-");
+            }
+            return str2.ToLower();
         }
     }
 

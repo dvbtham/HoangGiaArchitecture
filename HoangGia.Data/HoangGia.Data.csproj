@@ -77,6 +77,10 @@
     <Compile Include="Migrations\201708251541504_AddSlideTable..Designer.cs">
       <DependentUpon>201708251541504_AddSlideTable..cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708260904549_AddContactTable..cs" />
+    <Compile Include="Migrations\201708260904549_AddContactTable..Designer.cs">
+      <DependentUpon>201708260904549_AddContactTable..cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApplicationGroupRepository.cs" />
@@ -95,6 +99,7 @@
     <Compile Include="Repositories\ProjectRepository.cs" />
     <Compile Include="Repositories\ServiceRepository.cs" />
     <Compile Include="Repositories\SettingRepository.cs" />
+    <Compile Include="Repositories\ContactRepository.cs" />
     <Compile Include="Repositories\SlideRepository.cs" />
     <Compile Include="Repositories\TagRepository.cs" />
   </ItemGroup>
@@ -120,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708251541504_AddSlideTable..resx">
       <DependentUpon>201708251541504_AddSlideTable..cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708260904549_AddContactTable..resx">
+      <DependentUpon>201708260904549_AddContactTable..cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
