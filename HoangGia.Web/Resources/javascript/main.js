@@ -599,7 +599,7 @@
         if (matchMedia('only screen and (min-width: 991px)').matches) {
             headerFixed();
         }
-
+        $('[data-toggle="tooltip"]').tooltip(); 
         blogSlider();
         widgetSlider();
         goTop();

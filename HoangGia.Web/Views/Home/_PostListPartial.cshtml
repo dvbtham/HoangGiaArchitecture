@@ -1,4 +1,5 @@
 ﻿@using System.Globalization
+@using HoangGia.Web.Infrastructure
 @model IEnumerable<HoangGia.Web.ViewModels.PostViewModel>
 <section class="flat-row" style="background-color: #f2f2f2;">
     <div class="container">
@@ -22,18 +23,22 @@
                                                 </div>
                                                 <!-- /.feature-post -->
                                                 <div class="header-post">
-                                                    <h4 class="title-post"><a href="@Url.Action("Details", "Posts", new { id = item.Id })">@item.Name</a></h4>
+                                                    <h4 class="title-post">
+                                                        <a href="@Url.Action("Details", "Posts", new {id = item.Id})">
+                                                            @Html.TextSummary(item.Name, item.Name.Length, "title")
+                                                        </a>
+                                                    </h4>
                                                     <p class="time-post">@item.CreatedDate</p>
                                                 </div>
                                                 <!-- /.header-post -->
                                                 <div class="content-post">
-                                                    <p>@(item.Description.Length > 80 ? item.Description.Substring(0, 80) + "..." : item.Description)</p>
+                                                    @Html.TextSummary(item.Description, item.Description.Length, "description")
                                                 </div>
                                                 <!-- /.content-post -->
                                             </article>
                                         </div>
                                     }
-                                    <div class="flat-button">
+                                    <div class="view-all-center">
                                         <a href="@Url.Action("Index","Posts")">Xem tất cả</a>
                                     </div>
                                 </div>

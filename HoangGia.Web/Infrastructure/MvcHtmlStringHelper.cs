@@ -40,6 +40,28 @@ namespace HoangGia.Web.Infrastructure
 
         }
 
+        public static MvcHtmlString TextSummary(this HtmlHelper htmlHelper, string text, int limit, string type)
+        {
+            switch (type)
+            {
+                case "title":
+                    var titleBuilder = new TagBuilder("p");
+                    var title = limit > 40 ? text.Substring(0, 40) + "..." : text;
+                    titleBuilder.InnerHtml = title;
+                    titleBuilder.MergeAttribute("data-toggle", "tooltip");
+                    titleBuilder.MergeAttribute("title", text);
+                    return new MvcHtmlString(titleBuilder.ToString(TagRenderMode.Normal));
+                case "description":
+                    var descriptionBuilder = new TagBuilder("p");
+                    var description = limit > 70 ? text.Substring(0, 70) + "..." : text;
+                    descriptionBuilder.InnerHtml = description;
+                    descriptionBuilder.MergeAttribute("data-toggle", "tooltip");
+                    descriptionBuilder.MergeAttribute("title", text);
+                    return new MvcHtmlString(descriptionBuilder.ToString(TagRenderMode.Normal));
+                default: return null;
+            }
+        }
+
         public static MvcHtmlString HgDropdownListFor<TModel, TValue>(this HtmlHelper<TModel> helper,
             Expression<Func<TModel, TValue>> expression, IEnumerable<SelectListItem> itemList,
             object htmlAttributes = null, bool renderFormControlClass = true)
@@ -81,7 +103,7 @@ namespace HoangGia.Web.Infrastructure
             {
                 classes += "label-info ";
                 spanBuilder.MergeAttribute("class", classes);
-                spanBuilder.InnerHtml = "Đang làm";
+                spanBuilder.InnerHtml = "Đang thi công";
                 return new MvcHtmlString(spanBuilder.ToString(TagRenderMode.Normal));
             }
             if (status == ProjectStatus.Delay)
@@ -100,7 +122,7 @@ namespace HoangGia.Web.Infrastructure
             }
             classes += "label-danger ";
             spanBuilder.MergeAttribute("class", classes);
-            spanBuilder.InnerHtml = "Chưa khởi tạo";
+            spanBuilder.InnerHtml = "Dự án chưa khởi tạo";
             return new MvcHtmlString(spanBuilder.ToString(TagRenderMode.Normal));
         }
         public static MvcHtmlString LabelActived(this HtmlHelper helper, bool status)
