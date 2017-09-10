@@ -21,9 +21,10 @@ namespace HoangGia.Data.Migrations
         protected override void Seed(HoangGiaDbContext context)
         {
             //  This method will be called after migrating to the latest version.
-            CreateUser(context);
+
             CreateMenu(context);
             InitializeSetting(context);
+            CreateUser(context);
         }
 
         private void InitializeSetting(HoangGiaDbContext context)
@@ -51,7 +52,7 @@ namespace HoangGia.Data.Migrations
                     ServiceScheme = "Chúng tôi làm việc với chất lượng tốt nhất của dịch vụ cho khách hàng của chúng tôi và khách hàng của chúng tôi đánh giá cao chúng tôi cho điều đó.",
                     ServiceDescription = "Hoàng Gia chuyên cung cấp các dịch vụ kiến ​​trúc và thiết kế nội thất đặc biệt cho khách hàng trong và ngoài nước.",
                     //WhyChooseUsTitles = @"Kinh nghiệm/Chuyên nghiệp/Uy tín & Chất lượng/Tư vấn miễn phí",
-                    
+
                 };
 
                 context.Settings.Add(settings);
@@ -92,7 +93,7 @@ namespace HoangGia.Data.Migrations
                     Email = "dvbtham@gmail.com",
                     EmailConfirmed = true,
                     Image = "",
-                    CreatedDate = DateTime.ParseExact(DateTime.Now.ToShortDateString(), "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    //CreatedDate = DateTime.ParseExact(DateTime.Now.ToShortDateString(), "dd/MM/yyyy", CultureInfo.InvariantCulture),
                     BirthDay = DateTime.ParseExact("15/09/1996", "dd/MM/yyyy", CultureInfo.InvariantCulture),
                     Gender = "Nam",
                     Fullname = "Thâm Davies",

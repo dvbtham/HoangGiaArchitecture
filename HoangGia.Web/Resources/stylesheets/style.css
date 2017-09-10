@@ -1049,7 +1049,7 @@ input[type="submit"] {
     font-family: "Roboto", sans-serif;
     font-weight: 500;
     font-size: 16px;
-    text-transform: capitalize;
+    text-transform: uppercase;
     color: #fff;
     text-decoration: none;
     line-height: 80px;

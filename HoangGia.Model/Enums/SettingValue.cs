@@ -2,7 +2,7 @@
 {
     public enum SettingValue
     {
-        Default = 1,
-        User = 2
+        Default = 2,
+        User = 1
     }
 }

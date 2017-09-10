@@ -1,5 +1,7 @@
-﻿@{
-    ViewBag.Title = "About";
+﻿
+@{
+    ViewBag.Title = "Giới thiệu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!-- Page title -->
@@ -8,12 +10,12 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="page-title-heading">
-                    <h1 class="title">About</h1>
+                    <h1 class="title">Giới thiệu</h1>
                     <div class="breadcrumbs">
                         <ul>
-                            <li>You are here:</li>
-                            <li><a href="/">Home</a></li>
-                            <li>About</li>
+                            <li>Bạn đang ở đây:</li>
+                            <li><a href="/">Trang chủ</a></li>
+                            <li>Giới thiệu</li>
                         </ul>
                     </div>
                 </div><!-- /.page-title-captions -->
@@ -23,24 +25,6 @@
     </div><!-- /.container -->
 </div><!-- /.page-title -->
 
-<section class="flat-row about pad-top0px">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="image-single">
-                    <img src="/Resources/images/about/1.jpg" alt="image">
-                </div>
-            </div><!-- /.col-md-6 -->
-
-            <div class="col-md-6">
-                <div class="about-right">
-                    <h5>“Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work. And the only way to do great work is to love what you do. If you haven’t found it yet, keep looking. Don’t settle. As with all matters of the heart, you’ll know when you find it.”</h5>
-                    <p><img class="alignnone size-full" src="/Resources/images/about/sign.png" alt="image"></p>
-                </div>
-            </div><!-- /.col-md-6 -->
-        </div><!-- /.row -->
-    </div><!-- /.container -->
-</section>
 
 <section class="flat-row our-story pad-top0px">
     <div class="container">
@@ -76,48 +60,6 @@
                     </div><!-- /.col-md-9 -->
                 </div><!-- /.row -->
             </div><!-- /.col-md-8 -->
-        </div><!-- /.row -->
-    </div><!-- /.container -->
-</section>
-
-<section class="flat-row pad-top0px">
-    <div class="container">
-        <div class="row">
-            <div class="flat-portfolio">
-                <div class="portfolio-wrap">
-                    <div class="item">
-                        <a href="#"><img src="/Resources/images/about/2.jpg" alt="images"></a>
-                    </div>
-
-                    <div class="item">
-                        <a href="#"><img src="/Resources/images/about/3.jpg" alt="images"></a>
-                    </div>
-
-                    <div class="item">
-                        <a href="#"><img src="/Resources/images/about/4.jpg" alt="images"></a>
-                    </div>
-
-                    <div class="item">
-                        <a href="#"><img src="/Resources/images/about/5.jpg" alt="images"></a>
-                    </div>
-
-                    <div class="item">
-                        <a href="#"><img src="/Resources/images/about/6.jpg" alt="images"></a>
-                    </div>
-
-                    <div class="item">
-                        <a href="#"><img src="/Resources/images/about/7.jpg" alt="images"></a>
-                    </div>
-
-                    <div class="item">
-                        <a href="#"><img src="/Resources/images/about/8.jpg" alt="images"></a>
-                    </div>
-
-                    <div class="item">
-                        <a href="#"><img src="/Resources/images/about/9.jpg" alt="images"></a>
-                    </div>
-                </div><!-- /.portfolio-wrap -->
-            </div><!-- /.flat-portfolio -->
         </div><!-- /.row -->
     </div><!-- /.container -->
 </section>
@@ -244,27 +186,4 @@
 </section>
 
 <div class="flat-divider d50px"></div>
-
-<div class="content-bottom-widgets">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="widget widget_text">
-                    <div class="textwidget">
-                        <img src="/Resources/images/logo-ft-1.jpg" alt="image">
-                    </div>
-                </div><!-- /.widget_text -->
-            </div><!-- /.col-md-4 -->
-
-            <div class="col-md-8">
-                <div class="subscrbe-form">
-                    <label>Subscribe now to get daily updates</label>
-                    <form class="sub-form">
-                        <input type="text" class="subscrbe-field" placeholder="Your email address">
-                        <input type="submit" class="subscrbe-submit">
-                    </form>
-                </div><!-- /.widget_search -->
-            </div><!-- /.col-md-8 -->
-        </div><!-- /.row -->
-    </div><!-- /.container -->
-</div><!-- /.content-bottom-widgets -->
+@Html.Partial("_SubscribeFormPartial")
